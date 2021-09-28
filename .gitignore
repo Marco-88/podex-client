@@ -1,9 +1,9 @@
 .idea
 .vscode
 .svelte-kit
-.env
+.sass-cache
 
-.DS_Store
 node_modules
-/build
-/package
+
+.env
+*.css
