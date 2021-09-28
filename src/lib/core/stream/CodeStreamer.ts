@@ -26,7 +26,7 @@ export class CodeStreamer {
         this.store.updateItem(id, token);
 
         if(this.tempToken) {
-            this.store.updateItem(id, JSON.parse(this.tempToken));
+            this.store.updateItem(id, JSON.parse(this.tempToken).choices[0].text);
             this.tempToken = undefined;
         }
     }
