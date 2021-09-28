@@ -46,7 +46,7 @@ export class OpenAI {
 		let prompts = addExamplePattern(items[0].request) + items[0].response + '\n';
 
 		for(let i = 1; i < items.length; i++) {
-			prompts += addStopSequence(items[i].request) + '\n' + items[i].response + '\n';
+			prompts += addStopSequence(items[i].request) + items[i].response + '\n';
 		}
 
 		return prompts;
