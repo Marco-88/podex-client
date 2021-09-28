@@ -5,7 +5,9 @@
 
 	export let item: StoreItem = undefined;
 
-	$: code = item && `/*${item.request}*/\n\n${item.response}`;
+	const buildCode = (): string => `/*${item.request}*/\n\n${item.response}`;
+
+	$: code = item && buildCode();
 </script>
 
 <div class="code-list-item">
