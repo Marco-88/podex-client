@@ -5,7 +5,7 @@
 
 	export let item: StoreItem = undefined;
 
-	const buildCode = (): string => `/*${item.request}*/\n\n${item.response}`;
+	const buildCode = (): string => `/* ${item.request} */${item.response}`;
 
 	$: code = item && buildCode();
 </script>
