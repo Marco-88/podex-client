@@ -1,8 +1,26 @@
 <script lang="ts">
+	import { codeStore } from './code_panel/codeStore';
+	import { isCompletionFinished } from '../../core/openai/api';
+	let iframe: HTMLIFrameElement;
+
+	const buildCode = (): string => {
+		let js = '';
+
+		$codeStore.forEach(item => js += item.response);
+		const html = `<head><style>body {padding: 0; margin: 0;}</style>
+                      </head><body><script>${js}<\/script></body>`
+		iframe.contentDocument.open();
+		iframe.contentDocument.write(html);
+		iframe.contentDocument.close();
+
+		return js;
+	}
+
+	$: code = iframe && $codeStore && $isCompletionFinished && buildCode();
 </script>
 
 <div class='frame-wrapper'>
-	<iframe title="sandbox"> SandBox </iframe>
+	<iframe title="Sandbox" bind:this={iframe}></iframe>
 </div>
 
 <style lang='scss'>
