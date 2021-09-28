@@ -4,19 +4,27 @@
 	let iframe: HTMLIFrameElement;
 
 	const buildCode = (): string => {
-		let js = '';
+		let html = `<head><style>
+				body {padding: 0; margin: 0; display: flex; justify-content: center; align-items: center; height: 100%;}
+				p {font-size: 1.5rem; color: #777; height: 50px; width: 50%; text-align: center;}
+			</style></head><body>`
 
-		$codeStore.forEach(item => js += item.response);
-		const html = `<head><style>body {padding: 0; margin: 0;}</style>
-                      </head><body><script>${js}<\/script></body>`
+		if ($codeStore.length > 0)  {
+			let js = '';
+			$codeStore.forEach(item => js += item.response);
+			html += `<script>${js}<\/script></body>`;
+		} else {
+			html += `<p>Tell Codex what to do below, and it will generate JavaScript that runs here.</p></body>`;
+		}
+
 		iframe.contentDocument.open();
 		iframe.contentDocument.write(html);
 		iframe.contentDocument.close();
 
-		return js;
+		return html;
 	}
 
-	$: code = iframe && $codeStore && $isCompletionFinished && buildCode();
+	$: temp = iframe && $codeStore && $isCompletionFinished && buildCode();
 </script>
 
 <div class='frame-wrapper'>
