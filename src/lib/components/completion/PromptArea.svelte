@@ -5,9 +5,11 @@
 	let isPending = false;
 
 	const sendPrompt = async () => {
-		setPending(true);
-		await requestCompletion(prompt);
-		setPending(false);
+		if(prompt.trim().length > 0) {
+			setPending(true);
+			await requestCompletion(prompt.trim());
+			setPending(false);
+		}
 	};
 
 	const stopStream = async () => {
