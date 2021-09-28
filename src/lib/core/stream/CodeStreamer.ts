@@ -1,5 +1,6 @@
 import type { ItemStore, StoreItem, Completion } from '$lib//types';
 import * as uuid from 'uuid';
+import { isCompletionFinished } from '$lib/core/openai/api';
 
 export class CodeStreamer {
     private store: ItemStore<StoreItem>;
@@ -12,6 +13,8 @@ export class CodeStreamer {
     }
 
     public async processStream(request: string): Promise<void> {
+        isCompletionFinished.set(false);
+
         const id = uuid.v4();
         const item = { id, request, response: '\n' }
         this.store.add(item);
@@ -19,6 +22,7 @@ export class CodeStreamer {
         for await (const chunk of CodeStreamer.asyncIterableFromStream(this.reader)) {
             this.storeToken(id, chunk);
         }
+        isCompletionFinished.set(true);
     }
 
     private storeToken(id: string, chunk: Uint8Array) {
