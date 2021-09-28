@@ -18,10 +18,6 @@ export class OpenAI {
 		this.withExamples = withExamples;
 	}
 
-	public async stop (): Promise<void> {
-		await this.streamer.stopStream();
-	}
-
 	public async complete (prompt: string): Promise<void> {
 		try {
 			const response = await this.sendRequest(prompt);
@@ -32,6 +28,8 @@ export class OpenAI {
 			console.log(err);
 		}
 	}
+
+	public stop = async (): Promise<void> => await this.streamer.stopStream();
 
 	private static preparePrompt(prompt: string): string {
 		const items = get(codeStore);
