@@ -27,6 +27,17 @@ p {
 	padding: .3em;
 }
 
+button {
+	background: $primary;
+	color: $secondary;
+	font-size: 1.1rem;
+}
+
+button:hover {
+	background: $primary-light;
+	color: $secondary-dark;
+}
+
 a { text-decoration: none; }
 ul { list-style: none; }
 section { padding: 0 .5em; }
@@ -76,12 +87,12 @@ input:-webkit-autofill {
 		border: $thin solid $primary-dark;
 		color: $secondary-dark;
 	}
-
-	::-webkit-scrollbar { width: $bar-width; }
-	::-webkit-scrollbar-track { background: $primary; }
-	::-webkit-scrollbar-thumb { background: $secondary-dark; }
-	::-webkit-scrollbar-thumb:hover { background: $secondary-light; }
 }
+
+::-webkit-scrollbar { width: $bar-width; }
+::-webkit-scrollbar-track { background: $primary; }
+::-webkit-scrollbar-thumb { background: $secondary; }
+::-webkit-scrollbar-thumb:hover { background: $secondary-light; }
 
 // ***  General Classes *** \\
 

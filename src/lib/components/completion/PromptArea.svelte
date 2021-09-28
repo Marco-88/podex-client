@@ -51,15 +51,15 @@
 			::-webkit-scrollbar { cursor: pointer; }
 		}
 
-		::-webkit-scrollbar { width: $bar-width; }
-		::-webkit-scrollbar-track { background: $primary; }
-		::-webkit-scrollbar-thumb { background: $secondary; }
-		::-webkit-scrollbar-thumb:hover { background: $secondary-light; }
-
 		.icon-wrapper {
 			position: absolute;
 			right: 1rem;
 			bottom: 1rem;
+		}
+
+		button {
+			padding: 1rem;
+			margin-top: 1rem;
 		}
 	}
 </style>
