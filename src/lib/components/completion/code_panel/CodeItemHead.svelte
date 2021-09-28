@@ -8,6 +8,6 @@
 	const remove = async () => codeStore.removeById(item.id);
 </script>
 
-<Hoverable text={item.id} >
+<Hoverable>
 	<Icon key="trash" action={() => remove()} size={16} tooltip='Delete'/>
 </Hoverable>
