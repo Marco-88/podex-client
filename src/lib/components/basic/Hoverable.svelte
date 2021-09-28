@@ -13,9 +13,11 @@
 <style>
 	.hoverable {
 		display: flex;
-		align-content: center;
+		flex-direction: row-reverse;
 		justify-content: space-between;
-		width: 80%;
+		width: 97%;
 		margin: auto 0;
+		position: absolute;
+		z-index: 17;
 	}
 </style>

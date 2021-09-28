@@ -16,3 +16,18 @@
 		<CodeHighlight {code} />
 	</pre>
 </div>
+
+<style lang='scss' global>
+	.code-list-item {
+		position: relative;
+		width: 100%;
+
+		pre > pre {
+			width: 100%;
+
+			code {
+				padding: 1rem 16px;
+			}
+		}
+	}
+</style>

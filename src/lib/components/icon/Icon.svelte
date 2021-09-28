@@ -23,6 +23,7 @@
 	.icon-wrap {
 		width: 100%;
 		cursor: pointer;
+		padding: 0;
 	}
 
 	.icon-wrap.fill {

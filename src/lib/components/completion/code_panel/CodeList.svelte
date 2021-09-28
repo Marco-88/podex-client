@@ -13,7 +13,9 @@
 	.code-list {
 		display: flex;
 		flex-direction: column;
-		overflow: auto;
 		height: 100%;
+		margin: 0 auto;
+		overflow-y: auto;
+		width: 100%;
 	}
 </style>

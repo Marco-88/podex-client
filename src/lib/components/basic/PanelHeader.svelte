@@ -10,12 +10,20 @@
 </div>
 
 
-<style>
+<style lang='scss' global>
 	.panel-header {
 		display: flex;
 		align-content: center;
 		justify-content: space-around;
-		padding: 8px 0;
-		height: 32px;
+		height: 48px;
+
+		h1 {
+			padding: .5rem 0;
+		}
+
+		div {
+			padding: .5rem 0;
+			margin-bottom: 17px;
+		}
 	}
 </style>

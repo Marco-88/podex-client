@@ -18,12 +18,13 @@
 	@import "static/css/variables";
 
 	.right-section {
-		position: relative;
+		border-left: $thin solid $secondary-dark;
 		display: flex;
 		flex-direction: column;
 		flex-grow: 2;
 		height: 100%;
-		border-left: $thin solid $secondary-dark;
+		overflow: hidden;
 		padding: 0 .5rem;
+		position: relative;
 	}
 </style>
