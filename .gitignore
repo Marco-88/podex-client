@@ -1,0 +1,9 @@
+.idea
+.vscode
+.svelte-kit
+.env
+
+.DS_Store
+node_modules
+/build
+/package

@@ -1,0 +1,95 @@
+@import 'variables';
+
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+body {
+	background: $primary-dark;
+	box-sizing: border-box;
+	color: $secondary;
+	font-family: $font;
+	min-width: 290px;
+}
+
+p {
+	background: $secondary;
+	color: $primary-dark;
+	padding: .3em;
+}
+
+a { text-decoration: none; }
+ul { list-style: none; }
+section { padding: 0 .5em; }
+
+#svelte {
+	height: 100%;
+}
+
+// *** Interactive Elements *** \\
+
+button,
+select,
+textarea {
+	border: $thin solid $primary-light;
+	border-radius: 2px;
+	box-sizing: border-box;
+	margin-top: 0;
+	resize: none;
+}
+
+button:focus,
+select:focus,
+textarea:focus,
+input:focus {
+	border: $thin solid $secondary-light;
+}
+
+input { padding: .35em; }
+input:-webkit-autofill {
+	color: $secondary;
+
+	textarea:-webkit-autofill,
+	textarea:-webkit-autofill:hover,
+	textarea:-webkit-autofill:focus {
+		background-color: $primary-dark;
+		border: 0;
+		border-radius: 0 0 0 $radius;
+		-webkit-box-shadow: 0 0 0 $shadow $primary inset;
+		caret-color: $secondary-light;
+		color: $secondary-light;
+		-webkit-text-fill-color: $secondary-light;
+		transition: background-color 5000s ease-in-out 0s;
+	}
+
+	input:disabled {
+		background: $disabled;
+		border: $thin solid $primary-dark;
+		color: $secondary-dark;
+	}
+
+	::-webkit-scrollbar { width: $bar-width; }
+	::-webkit-scrollbar-track { background: $primary; }
+	::-webkit-scrollbar-thumb { background: $secondary-dark; }
+	::-webkit-scrollbar-thumb:hover { background: $secondary-light; }
+}
+
+// ***  General Classes *** \\
+
+.round { border-radius: 50%; }
+.off { display: none; }
+.hidden { opacity: 0; }
+.disable {
+	background: $disabled;
+	border: $thin solid $primary-dark;
+	color: $secondary-dark;
+}
