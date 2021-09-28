@@ -11,5 +11,10 @@
 	.frame-wrapper {
 		background: $primary-light;
 		height: 70%;
+
+		iframe {
+			height: 100%;
+			width: 100%;
+		}
 	}
 </style>

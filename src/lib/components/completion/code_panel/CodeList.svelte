@@ -14,8 +14,11 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		margin: 0 auto;
+		padding: 0 .5rem;
 		overflow-y: auto;
-		width: 100%;
+		position: absolute;
+		top: 48px;
+		right: 0;
+		left: 0;
 	}
 </style>
