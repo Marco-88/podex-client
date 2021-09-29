@@ -1,46 +1,49 @@
 <script lang="ts">
 	import { codeStore } from './code_panel/codeStore';
 	import { isCompletionFinished } from '../../core/openai/api';
-	let iframe: HTMLIFrameElement;
 
-	const buildCode = (): string => {
-		let html = `<head><style>
-				body {padding: 0; margin: 0; display: flex; justify-content: center; align-items: center; height: 100%;}
-				p {font-size: 1.5rem; color: #777; height: 50px; width: 50%; text-align: center;}
-			</style></head><body>`
+	let iFrame: HTMLIFrameElement;
 
-		if ($codeStore.length > 0)  {
-			let js = '';
-			$codeStore.forEach(item => js += item.response);
-			html += `<script>${js}<\/script></body>`;
-		} else {
-			html += `<p>Tell Codex what to do below, and it will generate JavaScript that runs here.</p></body>`;
+	const triggerPostMessage = (): void => {
+		if($codeStore.length > 0) {
+			const data = $codeStore[$codeStore.length - 1].response;
+			iFrame.contentWindow.postMessage(data, window.location.origin);
 		}
-
-		iframe.contentDocument.open();
-		iframe.contentDocument.write(html);
-		iframe.contentDocument.close();
-
-		return html;
 	}
 
-	$: temp = iframe && $codeStore && $isCompletionFinished && buildCode();
+	$: temp = iFrame && $codeStore && $isCompletionFinished && triggerPostMessage();
 </script>
 
-<div class='frame-wrapper'>
-	<iframe title="Sandbox" bind:this={iframe}></iframe>
+<div class='sandbox-container'>
+	<iframe id="sandbox-frame" title="Sandbox" src='/sandbox/sandbox.html' bind:this={iFrame}></iframe>
+	{#if $codeStore.length === 0}
+		<div>Tell Codex what to do below, and it will generate JavaScript that runs here.</div>
+	{/if}
 </div>
 
 <style lang='scss'>
 	@import 'static/css/variables';
 
-	.frame-wrapper {
+	.sandbox-container {
 		background: $primary-light;
-		height: 70%;
+		height: 75%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: $radius;
 
 		iframe {
 			height: 100%;
 			width: 100%;
+		}
+
+		div {
+			position: absolute;
+			font-size: 1.5rem;
+			color: $active;
+			height: 50px;
+			width: 35%;
+			text-align: center;
 		}
 	}
 </style>

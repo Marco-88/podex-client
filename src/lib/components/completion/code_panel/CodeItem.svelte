@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CodeItemHead from './CodeItemHead.svelte';
+	import CodeItemHeader from './CodeItemHeader.svelte';
 	import type { StoreItem } from '$lib/types';
 	import CodeHighlight from './CodeHighlight.svelte';
 
@@ -11,18 +11,15 @@
 </script>
 
 <div class="code-list-item">
-	<CodeItemHead {item}/>
+	<CodeItemHeader {item}/>
 	<pre class="codex-response">
 		<CodeHighlight {code} />
 	</pre>
 </div>
 
-<style lang='scss' global>
+<style>
 	.code-list-item {
 		width: 100%;
-
-		pre > pre > code {
-			padding: 1rem 16px;
-		}
+		position: relative;
 	}
 </style>
