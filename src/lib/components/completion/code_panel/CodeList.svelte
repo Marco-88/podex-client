@@ -13,7 +13,6 @@
 	.code-list {
 		display: flex;
 		flex-direction: column;
-		padding: 0 .5rem;
 		position: absolute;
 		top: 48px;
 		right: 0;
