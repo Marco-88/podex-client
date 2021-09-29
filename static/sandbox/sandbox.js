@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 	window.addEventListener("message", (event) => {
-		console.log('Message Received: ', event.data);
 		window.eval(event.data);
 	});
 
