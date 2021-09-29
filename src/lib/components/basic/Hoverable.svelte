@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let text: string;
+	export let text = '';
 
 	let hidden = true;
 	const toggle = () => (hidden = !hidden);
@@ -12,12 +12,11 @@
 
 <style>
 	.hoverable {
-		display: flex;
-		flex-direction: row-reverse;
-		justify-content: space-between;
-		width: 97%;
+		display: inline-block;
 		margin: auto 0;
 		position: absolute;
+		right: 1rem;
+		top: -1rem;
 		z-index: 17;
 	}
 </style>

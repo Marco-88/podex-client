@@ -41,8 +41,9 @@
 	.prompt-container {
 		background: $primary-dark;
 		display: flex;
-		height: 19%;
+		height: 17%;
 		position: relative;
+		border-radius: $radius;
 
 		#prompt-area {
 			flex-grow: 1;
@@ -50,7 +51,9 @@
 			padding: 1rem;
 			margin-top: 1rem;
 			font-size: 1.1rem;
+			font-weight: bold;
 			::-webkit-scrollbar { cursor: pointer; }
+			border-radius: $radius;
 		}
 
 		.icon-wrapper {
@@ -62,6 +65,7 @@
 		button {
 			padding: 1rem;
 			margin-top: 1rem;
+			border-radius: 0 $radius $radius 0;
 		}
 	}
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let text: string;
+	export let text = '';
 </script>
 
 <div class="panel-header">
@@ -10,7 +10,7 @@
 </div>
 
 
-<style lang='scss' global>
+<style lang='scss'>
 	.panel-header {
 		display: flex;
 		align-content: center;
@@ -19,11 +19,6 @@
 
 		h1 {
 			padding: .5rem 0;
-		}
-
-		div {
-			padding: .5rem 0;
-			margin-bottom: 17px;
 		}
 	}
 </style>

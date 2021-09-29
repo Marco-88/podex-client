@@ -16,39 +16,3 @@
 	{#if text} {text} {/if}
 	<Svg {key} width={size} height={size} />
 </div>
-
-<style lang='scss' global>
-	@import "static/css/variables";
-
-	.icon-wrap {
-		width: 100%;
-		cursor: pointer;
-		padding: 0;
-	}
-
-	.icon-wrap.fill {
-		background: $primary-dark;
-		padding: .45rem;
-		position: relative;
-	}
-
-	.icon-wrap.fill:hover {
-		background: $secondary;
-		border: $thin solid $primary;
-	}
-
-    .icon-wrap svg path {
-	    fill: $secondary-dark;
-	    stroke: $secondary;
-    }
-
-    .icon-wrap svg:hover path {
-	    fill: $secondary;
-	    stroke: $secondary-light;
-    }
-
-	.icon-wrap.fill svg:hover path {
-		fill: $primary-dark;
-		stroke: $primary-light;
-	}
-</style>

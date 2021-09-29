@@ -1,9 +1,16 @@
 @import 'variables';
+@import 'icons';
 
 * {
 	border: 0;
 	margin: 0;
 	padding: 0;
+}
+
+*,
+::after,
+::before {
+	box-sizing: border-box;
 }
 
 html,
@@ -40,7 +47,7 @@ button:hover {
 
 a { text-decoration: none; }
 ul { list-style: none; }
-section { padding: 0 .5em; }
+section { padding: 0 1em; }
 
 #svelte {
 	height: 100%;
@@ -93,6 +100,12 @@ input:-webkit-autofill {
 ::-webkit-scrollbar-track { background: $primary; }
 ::-webkit-scrollbar-thumb { background: $secondary; }
 ::-webkit-scrollbar-thumb:hover { background: $secondary-light; }
+
+// ***  HighlightJS *** \\
+
+pre > pre > code {
+	padding: 1rem 16px;
+}
 
 // ***  General Classes *** \\
 

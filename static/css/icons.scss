@@ -1,0 +1,57 @@
+@import 'variables';
+
+.icon-wrap {
+    cursor: pointer;
+    padding: 0;
+    width: 100%;
+
+    &.fill {
+        background: $primary-dark;
+        padding: 1.2rem;
+        position: relative;
+
+        svg {
+            left: 0;
+            padding: .45em;
+            position: absolute;
+            top: -.1em;
+        }
+
+        svg:hover path {
+            fill: $primary-dark;
+            stroke: $primary-light;
+        }
+    }
+
+    &.fill:hover {
+        background: $secondary;
+        border: $thin solid $primary;
+    }
+
+    svg path {
+        fill: $secondary-dark;
+        stroke: $secondary;
+    }
+
+    svg:hover path {
+        fill: $secondary;
+        stroke: $secondary-light;
+    }
+}
+
+.panel-header .icon-wrap {
+    padding: .55rem 0;
+}
+
+.hoverable .icon-wrap {
+    background: $primary;
+    padding: 1rem;
+    position: relative;
+
+    svg {
+        left: 0;
+        padding: .45em;
+        position: absolute;
+        top: -.1em;
+    }
+}

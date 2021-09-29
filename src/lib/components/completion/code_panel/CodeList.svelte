@@ -14,7 +14,6 @@
 		display: flex;
 		flex-direction: column;
 		padding: 0 .5rem;
-		overflow-y: auto;
 		position: absolute;
 		top: 48px;
 		right: 0;

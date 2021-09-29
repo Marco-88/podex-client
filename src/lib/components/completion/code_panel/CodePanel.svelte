@@ -23,7 +23,6 @@
 		flex-direction: column;
 		flex-grow: 2;
 		height: 100%;
-		overflow: hidden;
 		padding: 0 .5rem;
 		position: relative;
 	}

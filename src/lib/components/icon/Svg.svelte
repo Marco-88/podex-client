@@ -17,12 +17,3 @@
 </script>
 
 <svelte:component this={SvgIcon} {width} {height}/>
-
-<style global>
-	.fill svg {
-		position: absolute;
-		left: 0;
-		padding: .45em;
-		top: -.1em;
-	}
-</style>

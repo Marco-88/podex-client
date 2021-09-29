@@ -1,7 +1,51 @@
+.icon-wrap {
+  cursor: pointer;
+  padding: 0;
+  width: 100%; }
+  .icon-wrap.fill {
+    background: #000;
+    padding: 1.2rem;
+    position: relative; }
+    .icon-wrap.fill svg {
+      left: 0;
+      padding: .45em;
+      position: absolute;
+      top: -.1em; }
+    .icon-wrap.fill svg:hover path {
+      fill: #000;
+      stroke: #232323; }
+  .icon-wrap.fill:hover {
+    background: #97771a;
+    border: 1px solid #171717; }
+  .icon-wrap svg path {
+    fill: #725310;
+    stroke: #97771a; }
+  .icon-wrap svg:hover path {
+    fill: #97771a;
+    stroke: #aa8a27; }
+
+.panel-header .icon-wrap {
+  padding: .55rem 0; }
+
+.hoverable .icon-wrap {
+  background: #171717;
+  padding: 1rem;
+  position: relative; }
+  .hoverable .icon-wrap svg {
+    left: 0;
+    padding: .45em;
+    position: absolute;
+    top: -.1em; }
+
 * {
   border: 0;
   margin: 0;
   padding: 0; }
+
+*,
+::after,
+::before {
+  box-sizing: border-box; }
 
 html,
 body {
@@ -21,6 +65,15 @@ p {
   color: #000;
   padding: .3em; }
 
+button {
+  background: #171717;
+  color: #97771a;
+  font-size: 1.1rem; }
+
+button:hover {
+  background: #232323;
+  color: #725310; }
+
 a {
   text-decoration: none; }
 
@@ -28,7 +81,7 @@ ul {
   list-style: none; }
 
 section {
-  padding: 0 .5em; }
+  padding: 0 1em; }
 
 #svelte {
   height: 100%; }
@@ -68,14 +121,21 @@ input:-webkit-autofill {
     background: #444;
     border: 1px solid #000;
     color: #725310; }
-  input:-webkit-autofill ::-webkit-scrollbar {
-    width: 10px; }
-  input:-webkit-autofill ::-webkit-scrollbar-track {
-    background: #171717; }
-  input:-webkit-autofill ::-webkit-scrollbar-thumb {
-    background: #725310; }
-  input:-webkit-autofill ::-webkit-scrollbar-thumb:hover {
-    background: #aa8a27; }
+
+::-webkit-scrollbar {
+  width: 10px; }
+
+::-webkit-scrollbar-track {
+  background: #171717; }
+
+::-webkit-scrollbar-thumb {
+  background: #97771a; }
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aa8a27; }
+
+pre > pre > code {
+  padding: 1rem 16px; }
 
 .round {
   border-radius: 50%; }
