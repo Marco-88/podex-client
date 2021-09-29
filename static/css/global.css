@@ -29,6 +29,7 @@
 
 .hoverable .icon-wrap {
   background: #171717;
+  border-radius: 0.31rem;
   padding: 1rem;
   position: relative; }
   .hoverable .icon-wrap svg {
