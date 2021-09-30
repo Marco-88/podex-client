@@ -12,12 +12,10 @@
 
 <div class="code-list-item">
 	<CodeItemHeader {item}/>
-	<pre class="codex-response">
-		<CodeHighlight {code} />
-	</pre>
+	<CodeHighlight {code} />
 </div>
 
-<style>
+<style lang='scss'>
 	.code-list-item {
 		width: 100%;
 		position: relative;

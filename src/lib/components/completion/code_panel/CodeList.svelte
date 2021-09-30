@@ -17,6 +17,7 @@
 		top: 48px;
 		right: 0;
 		left: 0;
-		bottom: 1rem;
+		bottom: .05rem;
+		overflow-y: auto;
 	}
 </style>

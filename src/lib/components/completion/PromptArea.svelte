@@ -41,7 +41,7 @@
 	.prompt-container {
 		background: $primary-dark;
 		display: flex;
-		height: 17%;
+		height: 18.5%;
 		position: relative;
 		border-radius: $radius;
 

@@ -8,9 +8,11 @@
 </script>
 
 <div class="right-section">
-	<PanelHeader>
-		<Icon key="toilet" action={() => clear()} size={24} tooltip='Clear ALL'/>
-	</PanelHeader>
+	<div class='header'>
+		<PanelHeader>
+			<Icon key="toilet" action={() => clear()} size={24} tooltip='Clear ALL'/>
+		</PanelHeader>
+	</div>
 	<CodeList />
 </div>
 
@@ -23,7 +25,13 @@
 		flex-direction: column;
 		flex-grow: 2;
 		height: 100%;
-		padding: 0 .5rem;
 		position: relative;
+
+		.header {
+			width: 100%;
+			position: absolute;
+			top: 0;
+			z-index: 17;
+		}
 	}
 </style>

@@ -10,13 +10,18 @@
 	<slot></slot>
 </div>
 
-<style>
+<style lang='scss'>
 	.hoverable {
 		display: inline-block;
 		margin: auto 0;
 		position: absolute;
 		right: 1rem;
-		top: -1rem;
+		top: .5rem;
 		z-index: 17;
+		opacity: 66%;
+
+		&.hidden {
+			opacity: 0;
+		}
 	}
 </style>
