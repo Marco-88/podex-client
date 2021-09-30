@@ -3,12 +3,14 @@
 	import { codeStore } from './codeStore';
 	import PanelHeader from '../../basic/PanelHeader.svelte';
 	import Icon from '../../icon/Icon.svelte';
+	import { sendResetMessage } from './resetMessage';
 
-	const clear = async () => codeStore.clear();
+	const clear = async () => codeStore.clear() && sendResetMessage();
+	$: code = $codeStore.length > 0;
 </script>
 
 <div class="right-section">
-	<div class='header'>
+	<div class='header' class:code>
 		<PanelHeader>
 			<Icon key="toilet" action={() => clear()} size={24} tooltip='Clear ALL'/>
 		</PanelHeader>
@@ -32,6 +34,10 @@
 			position: absolute;
 			top: 0;
 			z-index: 17;
+
+			&.code {
+				background: $monokai-bg;
+			}
 		}
 	}
 </style>

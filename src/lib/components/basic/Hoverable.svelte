@@ -12,7 +12,7 @@
 
 <style lang='scss'>
 	.hoverable {
-		display: inline-block;
+		display: flex;
 		margin: auto 0;
 		position: absolute;
 		right: 1rem;

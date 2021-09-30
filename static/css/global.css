@@ -135,8 +135,8 @@ input:-webkit-autofill {
 ::-webkit-scrollbar-thumb:hover {
   background: #aa8a27; }
 
-pre > pre > code {
-  padding: 1rem 16px; }
+pre > code {
+  padding: 1rem; }
 
 .round {
   border-radius: 50%; }
