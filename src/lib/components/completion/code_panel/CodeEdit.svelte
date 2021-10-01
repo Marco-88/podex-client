@@ -3,28 +3,30 @@
 	import Icon from '../../icon/Icon.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	export let code: string = undefined;
+	export let code = '';
 
+	let codeEditPre: HTMLPreElement;
 	const dispatch = createEventDispatcher();
-	const checkCodeIn = (): void => console.log('Implement check code in!');
+	const checkCodeIn = (): void => dispatch('save', {code: codeEditPre.textContent});
 	const abortEditing = (): void => dispatch('abort');
 
 	dispatch
 </script>
 
-<div class="code-list-item">
+<div class='code-item-edit'>
 	<Hoverable>
 		<Icon key="check" action={() => checkCodeIn()} size={18} tooltip='Save'/>
 		<Icon key="close" action={() => abortEditing()} size={16} tooltip='Abort'/>
 	</Hoverable>
-	<pre class='code-edit'>
+	<pre class='code-edit' contenteditable='true' bind:this={codeEditPre}>
 		{code}
 	</pre>
 </div>
 
 <style lang='scss'>
-	.code-list-item {
+	.code-item-edit {
 		width: 100%;
 		position: relative;
+		padding: 1rem;
 	}
 </style>

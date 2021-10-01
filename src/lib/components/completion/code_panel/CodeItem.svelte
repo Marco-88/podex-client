@@ -10,21 +10,28 @@
 	export let item: StoreItem = undefined;
 	let editMode = false;
 
-	const buildCode = (): string => `/* ${item.request} */${item.response}`;
 	const toggleEditMode = (): boolean => editMode = !editMode;
-	const sendReset = (): void => sendResetMessage();
+	const buildCode = (): string => `/* ${item.request} */${item.response}`;
+	const cutRequestOut = (code: string): string => code.replace(`/* ${item.request} */`, '');
+
 	const sendResetAndRemoveItem = (): void => {
-		sendReset();
+		sendResetMessage();
 		codeStore.removeById(item.id);
 	};
+
+	const updateItem = (event): void => {
+		toggleEditMode();
+		sendResetMessage();
+		codeStore.setResponse(item.id, cutRequestOut(event.detail.code));
+	}
 
 	$: code = item && buildCode();
 	$: editing = item && editMode;
 </script>
 
-<div class="code-list-item">
+<div class='code-item'>
 	{#if editing}
-		<CodeEdit {code} on:abort={toggleEditMode}/>
+		<CodeEdit {code} on:abort={toggleEditMode} on:save={updateItem}/>
 	{:else}
 		<Hoverable>
 			<Icon key="edit" action={() => toggleEditMode()} size={16} tooltip='Edit'/>
@@ -35,7 +42,7 @@
 </div>
 
 <style lang='scss'>
-	.code-list-item {
+	.code-item {
 		width: 100%;
 		position: relative;
 	}
