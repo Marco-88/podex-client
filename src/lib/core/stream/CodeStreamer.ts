@@ -27,10 +27,10 @@ export class CodeStreamer {
 
     private storeToken(id: string, chunk: Uint8Array) {
         const token = this.processCompletionToken(chunk);
-        this.store.updateItem(id, token);
+        this.store.appendToken(id, token);
 
         if(this.tempToken) {
-            this.store.updateItem(id, JSON.parse(this.tempToken).choices[0].text);
+            this.store.appendToken(id, JSON.parse(this.tempToken).choices[0].text);
             this.tempToken = undefined;
         }
     }
