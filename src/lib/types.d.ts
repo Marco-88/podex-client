@@ -20,7 +20,8 @@ export interface ItemStore<T extends StoreItem> {
 	add: (item: T) => void;
 	removeById: (index: string) => void;
 	removeByValue: (item: T) => void;
-	updateItem: (id: string, token: string) => void;
+	appendToken: (id: string, token: string) => void;
+	setResponse: (id: string, response: string) => void;
 	clear: () => void;
 }
 
