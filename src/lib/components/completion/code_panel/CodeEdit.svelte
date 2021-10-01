@@ -14,7 +14,7 @@
 
 <div class="code-list-item">
 	<Hoverable>
-		<Icon key="check" action={() => checkCodeIn()} size={16} tooltip='Save'/>
+		<Icon key="check" action={() => checkCodeIn()} size={18} tooltip='Save'/>
 		<Icon key="close" action={() => abortEditing()} size={16} tooltip='Abort'/>
 	</Hoverable>
 	<pre class='code-edit'>
