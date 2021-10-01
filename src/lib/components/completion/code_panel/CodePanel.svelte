@@ -22,7 +22,7 @@
 	@import "static/css/variables";
 
 	.right-section {
-		border-left: $thin solid $secondary-dark;
+		border-left: $border solid $secondary-dark;
 		display: flex;
 		flex-direction: column;
 		flex-grow: 2;
