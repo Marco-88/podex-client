@@ -26,7 +26,7 @@
 	<textarea id="prompt-area" bind:value={prompt} placeholder="Provide instructions..."></textarea>
 	{#if !isPending}
 		<div class='icon-wrapper'>
-			<Icon key="arrowRight" action={() => sendPrompt()} round={true} fill={true} size={28} tooltip='Send'/>
+			<Icon key="submit" action={() => sendPrompt()} round={true} fill={true} size={24} tooltip='Send'/>
 		</div>
 	{:else}
 		<button class='button-cancel' on:click={() => stopStream()}>

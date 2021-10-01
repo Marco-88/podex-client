@@ -3,16 +3,24 @@
 
 	export let size = 32;
 	export let action = (): unknown => '';
-	export let key: string = undefined;
-	export let text: string = undefined;
-	export let tooltip: string = undefined;
+	export let key = '';
+	export let tooltip = '';
 	export let round = false;
 	export let fill = false;
 
-	const style = `height: ${size}px; width: ${size}px;`;
+	const iconSize = Math.ceil(size * 1.75);
+	const style = `height: ${iconSize}px; width: ${iconSize}px;`;
 </script>
 
-<div class='icon-wrap' class:round class:fill on:click|stopPropagation={action} title={tooltip} {style}>
-	{#if text} {text} {/if}
-	<Svg {key} width={size} height={size} />
+<div class='icon' class:round class:fill on:click|stopPropagation={action} title={tooltip} {style}>
+	<Svg {key} {size} />
 </div>
+
+<style>
+	.icon {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+</style>
