@@ -1,21 +1,8 @@
 @import 'variables';
 
-.icon-wrap {
-    cursor: pointer;
-    padding: 0;
-    width: 100%;
-
+.icon {
     &.fill {
         background: $primary-dark;
-        padding: 1.2rem;
-        position: relative;
-
-        svg {
-            left: 0;
-            padding: .45em;
-            position: absolute;
-            top: -.1em;
-        }
 
         svg:hover path {
             fill: $primary-dark;
@@ -39,20 +26,8 @@
     }
 }
 
-.panel-header .icon-wrap {
-    padding: .55rem 0;
-}
-
-.hoverable .icon-wrap {
+.hoverable .icon {
     background: $primary;
     border-radius: $radius;
     padding: 1rem;
-    position: relative;
-
-    svg {
-        left: 0;
-        padding: .45em;
-        position: absolute;
-        top: -.1em;
-    }
 }
