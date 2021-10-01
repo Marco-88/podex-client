@@ -9,7 +9,7 @@ export const icons = {
 	submit: { top: '.45rem', icon: ArrowRight },
 	check: { top: '.55rem', icon: Check },
 	close: { top: '.4rem', icon: Close },
-	edit: { top: '.34rem', icon: Edit },
+	edit: { top: '.45rem', icon: Edit },
 	toilet: { icon: Toilet },
 	trash: { top: '.4rem', icon: Trash }
 }
