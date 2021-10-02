@@ -55,6 +55,7 @@ section { padding: 0 1em; }
 
 // *** Interactive Elements *** \\
 
+input,
 button,
 select,
 textarea {
@@ -65,35 +66,26 @@ textarea {
 	resize: none;
 }
 
-button:focus,
-select:focus,
-textarea:focus,
-input:focus {
-	border: $border solid $secondary-light;
+input:not([type="range"]):focus {
+	outline: $border solid $secondary-dark;
 }
 
-input { padding: .35em; }
+button:focus,
+textarea:focus {
+	outline: $border solid $active;
+}
+
+input,
 input:-webkit-autofill {
+	background-color: $primary;
 	color: $secondary;
+	padding: .3em .15rem;
+}
 
-	textarea:-webkit-autofill,
-	textarea:-webkit-autofill:hover,
-	textarea:-webkit-autofill:focus {
-		background-color: $primary-dark;
-		border: 0;
-		border-radius: 0 0 0 $radius;
-		-webkit-box-shadow: 0 0 0 $shadow $primary inset;
-		caret-color: $secondary-light;
-		color: $secondary-light;
-		-webkit-text-fill-color: $secondary-light;
-		transition: background-color 5000s ease-in-out 0s;
-	}
-
-	input:disabled {
-		background: $disabled;
-		border: $border solid $primary-dark;
-		color: $secondary-dark;
-	}
+input:disabled {
+	background: $disabled;
+	border: $border solid $primary-dark;
+	color: $secondary-dark;
 }
 
 ::-webkit-scrollbar { width: $scroll; }
