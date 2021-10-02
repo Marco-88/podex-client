@@ -8,4 +8,4 @@ node_modules
 .sass-cache
 *.css
 !sandbox.css
-*.css.map
+*.map
