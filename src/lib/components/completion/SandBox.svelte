@@ -26,7 +26,7 @@
 
 	.sandbox-container {
 		background: $primary-light;
-		height: 75%;
+		height: 72%;
 		display: flex;
 		justify-content: center;
 		align-items: center;

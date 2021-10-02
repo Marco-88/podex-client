@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { requestCompletion, stopCompletion } from '$lib/core/openai/api';
 	import Icon from '$lib/components/icon/Icon.svelte';
+
 	let prompt = '';
 	let isPending = false;
 
 	const sendPrompt = async () => {
-		if(prompt.trim().length > 0) {
+		if (prompt.trim().length > 0) {
 			setPending(true);
 			await requestCompletion(prompt.trim());
 			setPending(false);
@@ -19,7 +20,7 @@
 
 	const setPending = (pending: boolean) => {
 		isPending = pending;
-	}
+	};
 </script>
 
 <div class="prompt-container">
@@ -41,7 +42,7 @@
 	.prompt-container {
 		background: $primary-dark;
 		display: flex;
-		height: 18.5%;
+		height: 15%;
 		position: relative;
 		border-radius: $radius;
 
@@ -49,7 +50,6 @@
 			flex-grow: 1;
 			background: $secondary-dark;
 			padding: 1rem;
-			margin-top: 1rem;
 			font-size: 1.1rem;
 			font-weight: bold;
 			::-webkit-scrollbar { cursor: pointer; }
@@ -64,7 +64,6 @@
 
 		button {
 			padding: 1rem;
-			margin-top: 1rem;
 			border-radius: 0 $radius $radius 0;
 		}
 	}
