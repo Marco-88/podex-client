@@ -2,11 +2,13 @@
 	import PromptArea from './completion/PromptArea.svelte';
 	import SandBox from './completion/SandBox.svelte';
 	import PanelHeader from './basic/PanelHeader.svelte';
+	import Settings from './completion/settings/Settings.svelte';
 </script>
 
 <section class="main-section">
 	<PanelHeader text="Poku17s Codex Sandbox Clone"/>
 	<SandBox />
+	<Settings />
 	<PromptArea />
 </section>
 

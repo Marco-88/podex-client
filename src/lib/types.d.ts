@@ -25,6 +25,18 @@ export interface ItemStore<T extends StoreItem> {
 	clear: () => void;
 }
 
+export interface Settings {
+	maxTokens: number;
+	temperature: number;
+}
+
+export interface SettingsStore<T extends Settings> {
+	subscribe: (this: void, run: Subscriber<T>, invalidate?: Invalidator<T>) => Unsubscriber;
+	setMaxTokens: (maxTokens: number) => void;
+	setTemperature: (temperature: number) => void;
+	reset: () => void;
+}
+
 // *** OpenAI API *** \\
 
 export interface CompletionOpts {

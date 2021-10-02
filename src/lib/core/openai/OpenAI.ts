@@ -3,6 +3,7 @@ import { codeStore } from '$lib/components/completion/code_panel/codeStore'
 import type { CompletionOpts, StoreItem } from '$lib/types';
 import { CodeStreamer } from '../stream/CodeStreamer';
 import { addExamplePattern, addStopSequence } from '$lib/core/openai/exampleCommand';
+import { settingsStore } from '$lib/components/completion/settings/settingsStore';
 
 const ORIGIN = 'https://api.openai.com';
 const API_VERSION = 'v1';
@@ -72,10 +73,11 @@ export class OpenAI {
 	}
 
 	private static createRequestData (prompt: string): CompletionOpts {
+		const {maxTokens, temperature} = get(settingsStore);
 		return {
 			prompt,
-			max_tokens: 1000,
-			temperature: 0.0,
+			max_tokens: Number(maxTokens),
+			temperature: Number(temperature),
 			stream: true,
 			stop: "/* Command:",
 		}
