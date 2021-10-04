@@ -13,24 +13,33 @@
 	let hljsCode: HTMLElement;
 	let tokenCount: number | boolean = false;
 
-	const buildCode = (): string => $codeStore.map(item => `${item.request} ${item.response}`).join();
-	const syncScroll = (): void => {
-		hljsCode.scrollTop = promptArea.scrollTop;
-	};
+	const buildCode = (): void => {
+		if($codeStore.length > 0) {
+			const item = $codeStore[$codeStore.length - 1];
+			prompt = `${item.request} ${item.response}`;
+		}
+	}
 
+	const syncScroll = (): void => {hljsCode.scrollTop = promptArea.scrollTop};
 	const encodePrompt = async (): void => {
 		tokenCount = true;
 		tokenCount = await requestTokenCount(code);
 	}
 
-	onMount(() => prompt = buildCode());
-
-	$: code = prompt;
+	$: code = $codeStore && prompt;
+	$: temp = $codeStore.length && buildCode();
 	$: language = $settingsStore.sandbox ? languages['typescript'] : languages[$settingsStore.language];
+
+	onMount(() => {
+		buildCode();
+		hljsCode = document.querySelector('.code-area code');
+		code = prompt;
+		encodePrompt();
+	});
 </script>
 
 <pre class="code-area" spellcheck="false">
-	<Highlight {language} {code} bind:this={hljsCode}/>
+	<Highlight {language} {code}/>
 	<textarea id="prompt-area" bind:value={prompt} bind:this={promptArea} spellcheck="false" on:scroll={() => syncScroll()} on:input={encodePrompt}></textarea>
 </pre>
 <CodeFooter prompt={code} {tokenCount}/>
