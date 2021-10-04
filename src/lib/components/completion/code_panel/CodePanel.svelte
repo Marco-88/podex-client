@@ -3,7 +3,7 @@
 	import PanelHeader from '../../basic/PanelHeader.svelte';
 	import Icon from '../../icon/Icon.svelte';
 	import { codeStore } from './codeStore';
-	import { sendResetMessage } from '../resetMessage';
+	import { sendResetMessage } from '../sendMessage';
 	import { settingsStore } from '../settings/settingsStore';
 	import CodeArea from './code_area/CodeArea.svelte';
 

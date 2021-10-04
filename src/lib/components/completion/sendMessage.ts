@@ -1,12 +1,16 @@
 import { settingsStore } from '$lib/components/completion/settings/settingsStore';
 import { get } from 'svelte/store';
 
-export const sendResetMessage = (): void => {
+export const sendMessage = (message: string): void => {
 	if(get(settingsStore).sandbox) {
 		const iFrame = document.getElementById('sandbox-frame') as HTMLIFrameElement;
-		iFrame.contentWindow.postMessage(resetMessage, window.location.origin);
+		if(iFrame) {
+			iFrame.contentWindow.postMessage(message, window.location.origin);
+		}
 	}
 }
+
+export const sendResetMessage = (): void => sendMessage(resetMessage);
 
 const resetMessage = `
 	document.body.innerHTML = "";

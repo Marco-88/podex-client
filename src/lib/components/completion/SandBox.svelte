@@ -1,13 +1,8 @@
 <script lang="ts">
 	import { codeStore } from './code_panel/codeStore';
 	import { isCompletionFinished } from '../../core/openai/api';
-	import { onMount } from 'svelte';
-	import { sendResetMessage } from './resetMessage';
+	import { sendMessage, sendResetMessage } from './sendMessage';
 
-	let iFrame: HTMLIFrameElement;
-	let mounted = false;
-
-	const sendMessage = (data: string) => iFrame.contentWindow.postMessage(data, window.location.origin);
 	const triggerPostMessage = (): void => {
 		if($codeStore.length > 0) {
 			const data = $codeStore[$codeStore.length - 1].response;
@@ -15,20 +10,17 @@
 		}
 	}
 
-	$: temp = iFrame && $codeStore && $isCompletionFinished && mounted && triggerPostMessage();
+	$: temp = $codeStore && $isCompletionFinished && triggerPostMessage();
 
-	onMount(() => {
+	const load = (): void => {
 		sendResetMessage();
 		const data = $codeStore.map(item => item.response).join();
-		// console.log('OnMount Sandbox send data: ', data);
-		console.log('IFrame State: ', iFrame.contentDocument);
 		sendMessage(data);
-		mounted = true;
-	});
+	}
 </script>
 
 <div class='sandbox-container' >
-	<iframe id="sandbox-frame" title="Sandbox" src='/sandbox/sandbox.html' bind:this={iFrame}></iframe>
+	<iframe id="sandbox-frame" title="Sandbox" src='/sandbox/sandbox.html' on:load={load}></iframe>
 	{#if $codeStore.length === 0}
 		<div>Tell Podex what to do below, and it will generate JavaScript that runs here.</div>
 	{/if}

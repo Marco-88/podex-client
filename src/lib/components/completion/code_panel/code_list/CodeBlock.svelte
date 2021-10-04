@@ -2,7 +2,7 @@
 	import {Highlight} from "svelte-highlight";
 	import "svelte-highlight/src/styles/atom-one-dark.css";
 	import type { StoreItem } from '../../../../types';
-	import { sendResetMessage } from '../../resetMessage';
+	import { sendResetMessage } from '../../sendMessage';
 	import { codeStore } from '../codeStore';
 	import Hoverable from '../../../basic/Hoverable.svelte';
 	import Icon from '../../../icon/Icon.svelte';
