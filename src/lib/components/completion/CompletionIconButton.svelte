@@ -39,7 +39,7 @@
 	.send-request {
 		position: relative;
 
-		&.absolute {
+		&.right {
 			position: absolute;
 			right: 1rem;
 			bottom: 1rem;

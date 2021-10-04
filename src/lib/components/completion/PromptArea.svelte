@@ -1,11 +1,11 @@
 <script lang="ts">
-	import SendButton from './SendButton.svelte';
+	import CompletionIconButton from './CompletionIconButton.svelte';
 	let prompt = '';
 </script>
 
 <div class="prompt-container">
 	<textarea id="prompt-area" bind:value={prompt} placeholder="Provide instructions..."></textarea>
-	<SendButton {prompt} absolute={true} />
+	<CompletionIconButton {prompt} right={true} />
 </div>
 
 <style lang='scss'>

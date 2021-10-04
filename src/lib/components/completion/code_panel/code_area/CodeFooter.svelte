@@ -2,7 +2,7 @@
 	import Icon from '../../../icon/Icon.svelte';
 	import { historyStore } from '../historyStore';
 	import TokenCounter from './TokenCounter.svelte';
-	import SendButton from '../../SendButton.svelte';
+	import CompletionIconButton from '../../CompletionIconButton.svelte';
 
 	export let prompt = '';
 	export let tokenCount: number | boolean = false;
@@ -13,7 +13,7 @@
 
 <div class='code-footer'>
 	<div class='controls'>
-		<SendButton {prompt} />
+		<CompletionIconButton {prompt} />
 		<Icon key="undo" action={() => undo()} fill={true} size={16} tooltip='Undo'/>
 		<Icon key="redo" action={() => redo()} fill={true} size={16} tooltip='Redo'/>
 	</div>
