@@ -7,7 +7,6 @@
 	let isPending = false;
 
 	const sendPrompt = async () => {
-		console.log('code: ', prompt);
 		if (prompt && prompt.trim().length > 0) {
 			setPending(true);
 			await requestCompletion(prompt.trim());
