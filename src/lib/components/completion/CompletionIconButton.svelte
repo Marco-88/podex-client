@@ -2,6 +2,7 @@
 	import { requestCompletion, stopCompletion } from '$lib/core/openai/api';
 	import Icon from '$lib/components/icon/Icon.svelte';
 
+	export let size = 24;
 	export let right = false;
 	export let prompt = '';
 	let isPending = false;
@@ -26,9 +27,9 @@
 
 <div class='send-request' class:right>
 	{#if !isPending}
-		<Icon key="submit" action={() => sendPrompt()} round={true} fill={true} size={24} tooltip='Send'/>
+		<Icon key="submit" action={() => sendPrompt()} round={true} fill={true} {size} tooltip='Send'/>
 	{:else}
-		<Icon key="spinner" action={() => stopStream()} round={true} fill={true} size={24} tooltip='Cancel'/>
+		<Icon key="spinner" action={() => stopStream()} round={true} fill={true} {size} tooltip='Cancel'/>
 	{/if}
 </div>
 
