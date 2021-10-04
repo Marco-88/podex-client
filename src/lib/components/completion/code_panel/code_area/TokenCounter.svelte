@@ -1,9 +1,14 @@
 <script lang="ts">
+	import Icon from '../../../icon/Icon.svelte';
 	export let tokenCount: number | boolean = false;
 </script>
 
 <div class="token-counter">
-	{#if tokenCount} {tokenCount} {/if}
+	{#if typeof tokenCount === 'number'}
+		{tokenCount}
+	{:else if tokenCount}
+		<Icon key="spinner" fill={true} size={20} tooltip='Encoding Tokens'/>
+	{/if}
 </div>
 
 <style lang='scss'>
