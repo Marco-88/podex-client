@@ -2,7 +2,7 @@ import { get } from 'svelte/store';
 import { codeStore } from '$lib/components/completion/code_panel/codeStore'
 import type { CompletionOpts, StoreItem } from '$lib/types';
 import { CodeStreamer } from '../stream/CodeStreamer';
-import { addExamplePattern, addStopSequence } from '$lib/core/openai/exampleCommand';
+import { preparePrompt } from './examples';
 import { settingsStore } from '$lib/components/completion/settings/settingsStore';
 
 const ORIGIN = 'https://api.openai.com';
@@ -12,11 +12,9 @@ const OPEN_AI_URL = `${ORIGIN}/${API_VERSION}`
 export class OpenAI {
 	private streamer: CodeStreamer;
 	private readonly apiKey: string;
-	private readonly withExamples: boolean;
 
-	constructor(apiKey: string, withExamples = true) {
+	constructor(apiKey: string) {
 		this.apiKey = apiKey;
-		this.withExamples = withExamples;
 	}
 
 	public async complete (prompt: string): Promise<void> {
@@ -32,27 +30,9 @@ export class OpenAI {
 
 	public stop = async (): Promise<void> => await this.streamer.stopStream();
 
-	private static preparePrompt(prompt: string): string {
-		const items = get(codeStore);
-
-		if(items.length === 0)
-			return addExamplePattern(prompt);
-
-		return OpenAI.addPreviousCode(items) + addStopSequence(prompt);
-	}
-
-	private static addPreviousCode(items: StoreItem[]): string {
-		let prompts = addExamplePattern(items[0].request) + items[0].response + '\n';
-
-		for(let i = 1; i < items.length; i++) {
-			prompts += addStopSequence(items[i].request) + items[i].response + '\n';
-		}
-
-		return prompts;
-	}
-
 	private async sendRequest (prompt: string): Promise<Response> {
-		prompt = this.withExamples && OpenAI.preparePrompt(prompt);
+		if(get(settingsStore).sandbox)
+			prompt = preparePrompt(prompt);
 		const url = `${OPEN_AI_URL}/engines/davinci-codex/completions`;
 		return await fetch(url, this.createRequestInfo(prompt));
 	}

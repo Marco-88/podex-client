@@ -6,6 +6,7 @@
 	<title>Pokudex</title>
 	<html lang="en"></html>
 </svelte:head>
+
 <main id="codex-sandbox-clone">
 	<MainPanel />
 </main>

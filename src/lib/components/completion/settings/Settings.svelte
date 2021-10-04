@@ -1,33 +1,30 @@
 <script lang="ts">
-	import { settingsStore } from './settingsStore';
 	import Slider from '../../basic/Slider.svelte';
+	import Checkbox from '../../basic/Checkbox.svelte';
+	import { maxTokens, temperature, sandbox, language } from './settings';
+	import { settingsStore } from './settingsStore';
+	import Select from '../../basic/Select.svelte';
 
-	const maxTokens = {
-		text:'Max Tokens',
-		min: 64,
-		max: 4096,
-		value: $settingsStore.maxTokens,
-		saveValue: settingsStore.setMaxTokens
-	}
-
-	const temperature = {
-		text:'Temperature',
-		min: 0,
-		max: 1,
-		step: 0.01,
-		value: $settingsStore.temperature,
-		saveValue: settingsStore.setTemperature
-	}
+	$: off = !$settingsStore.sandbox;
 </script>
 
-<div class='settings'>
-	<Slider {...maxTokens}/>
-	<Slider {...temperature}/>
+<div class='settings' class:off>
+	<Slider {...maxTokens} value={$settingsStore.maxTokens}/>
+	<Slider {...temperature} value={$settingsStore.temperature}/>
+	<Checkbox {...sandbox} checked={!off}/>
+
+	{#if off}
+		<Select {...language} value={$settingsStore.language}/>
+	{/if}
 </div>
 
-<style>
+<style lang='scss'>
 	.settings {
 		display: flex;
 		justify-content: space-around;
+
+		&.off {
+			flex-direction: column;
+		}
 	}
 </style>

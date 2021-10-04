@@ -25,3 +25,12 @@ npm run start
 ## Usage
 
 [OpenAI Completion Docs](https://beta.openai.com/docs/guides/completion)
+
+# TODO
+
+- Implement the history for undo and redo
+- Sync caret of code area component from textarea to underlying highlight element
+- Show spinner while encoding token count
+- Improve settings layout of code area component
+- Adjust elements in footer of code area
+- Append response in code area

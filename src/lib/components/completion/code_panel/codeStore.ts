@@ -14,7 +14,8 @@ function createCodeStore(): ItemStore<StoreItem> {
             return prev;
         }),
         setResponse: (id: string, response: string) => update(prev => {
-            prev.find(item => item.id === id).response = response;
+            const item = prev.find(item => item.id === id);
+            if(item) item.response = response;
             return prev;
         }),
         clear: () => set([])

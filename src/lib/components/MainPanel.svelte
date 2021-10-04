@@ -1,11 +1,16 @@
 <script lang="ts">
 	import CodePanel from './completion/code_panel/CodePanel.svelte';
-	import MainSection from './MainSection.svelte';
+	import CodexView from './CodexView.svelte';
+	import { settingsStore } from './completion/settings/settingsStore';
+	import PlaygroundView from './PlaygroundView.svelte';
 </script>
 
 <div class="main-panel">
-	<MainSection/>
-	<CodePanel />
+	{#if $settingsStore.sandbox}
+		<CodexView/>
+	{:else}
+		<PlaygroundView />
+	{/if}
 </div>
 
 <style lang='scss'>
@@ -13,8 +18,9 @@
 
 	.main-panel {
 		display: flex;
-		flex-direction: row;
+		width: 100%;
 		height: 100%;
 		overflow: hidden;
+		padding: 0;
 	}
 </style>

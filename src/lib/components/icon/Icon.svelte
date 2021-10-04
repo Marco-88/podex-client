@@ -13,7 +13,7 @@
 </script>
 
 <div class='icon' class:round class:fill on:click|stopPropagation={action} title={tooltip} {style}>
-	<Svg {key} {size} />
+	<Svg {key} {size} spin={key === 'spinner'}/>
 </div>
 
 <style>

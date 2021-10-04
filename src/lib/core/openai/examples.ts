@@ -1,10 +1,36 @@
-export const addExamplePattern = (prompt: string): string => {
+import { get } from 'svelte/store';
+import { codeStore } from '$lib/components/completion/code_panel/codeStore';
+import type { StoreItem } from '$lib/types';
+
+export const preparePrompt = (prompt: string): string => {
+	const items = get(codeStore);
+
+	if(items.length === 0)
+		return addExamplePattern(prompt);
+
+	return addPreviousCode(items) + addStopSequence(prompt);
+}
+
+const addPreviousCode = (items: StoreItem[]): string => {
+	let prompts = addExamplePattern(items[0].request) + items[0].response + '\n';
+
+	for(let i = 1; i < items.length; i++) {
+		prompts += addStopSequence(items[i].request) + items[i].response + '\n';
+	}
+
+	return prompts;
+}
+
+
+
+const addExamplePattern = (prompt: string): string => {
 	return `${buildExamples()} \n ${addStopSequence(prompt)}`;
 };
 
-export const addStopSequence = (prompt: string): string => {
+const addStopSequence = (prompt: string): string => {
 	return `/* Command: ${prompt} */`;
 }
+
 const exampleHeader = '<|endoftext|>/* I start with a blank HTML page, ' +
 	'and incrementally modify it via <script> injection. Written for Chrome. */\n'
 

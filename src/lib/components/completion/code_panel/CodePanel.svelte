@@ -1,21 +1,29 @@
 <script lang="ts">
-	import CodeList from './CodeList.svelte';
-	import { codeStore } from './codeStore';
+	import CodeList from './code_list/CodeList.svelte';
 	import PanelHeader from '../../basic/PanelHeader.svelte';
 	import Icon from '../../icon/Icon.svelte';
-	import { sendResetMessage } from './resetMessage';
+	import { codeStore } from './codeStore';
+	import { sendResetMessage } from '../resetMessage';
+	import { settingsStore } from '../settings/settingsStore';
+	import CodeArea from './code_area/CodeArea.svelte';
 
 	const clear = async () => codeStore.clear() && sendResetMessage();
+
 	$: code = $codeStore.length > 0;
+	$: off = !$settingsStore.sandbox;
 </script>
 
-<div class="right-section">
-	<div class='header' class:code>
-		<PanelHeader>
-			<Icon key="toilet" action={() => clear()} size={24} tooltip='Clear ALL'/>
-		</PanelHeader>
-	</div>
-	<CodeList />
+<div class="right-section" class:off>
+	{#if !$settingsStore.sandbox}
+		<CodeArea />
+	{:else}
+		<div class='header' class:code>
+			<PanelHeader>
+				<Icon key="toilet" action={() => clear()} size={24} tooltip='Clear ALL'/>
+			</PanelHeader>
+		</div>
+		<CodeList />
+	{/if}
 </div>
 
 <style lang='scss'>
@@ -28,6 +36,10 @@
 		flex-grow: 2;
 		height: 100%;
 		position: relative;
+
+		&.off {
+			border-left: 0;
+		}
 
 		.header {
 			width: 100%;

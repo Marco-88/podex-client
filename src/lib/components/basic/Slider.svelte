@@ -64,7 +64,6 @@
 			background: $secondary-dark;
 			border-radius: $radius-round;
 			cursor: pointer;
-
 		}
 	}
 </style>

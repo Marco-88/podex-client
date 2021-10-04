@@ -1,5 +1,9 @@
 import { Readable, Subscriber, Unsubscriber, Updater } from 'svelte/types/runtime/store';
 
+export interface ChangeEvent extends Event {
+	target: HTMLInputElement;
+}
+
 // *** Svelte Store Stuff *** \\
 
 type Invalidator<T> = (value?: T) => void;
@@ -25,15 +29,38 @@ export interface ItemStore<T extends StoreItem> {
 	clear: () => void;
 }
 
+export interface HistoryStore<T extends History> {
+	subscribe: (this: void, run: Subscriber<T>, invalidate?: Invalidator<T>) => Unsubscriber;
+	add: (item: StoreItem[]) => void;
+	undo: () => void;
+	redo: () => void;
+	clear: () => void;
+}
+
+export interface History {
+	index: number;
+	current: StoreItem[];
+	states: HistoryItem[]
+}
+
+export interface HistoryItem {
+	index: number;
+	state: StoreItem[]
+}
+
 export interface Settings {
+	sandbox: boolean;
 	maxTokens: number;
 	temperature: number;
+	language: string;
 }
 
 export interface SettingsStore<T extends Settings> {
 	subscribe: (this: void, run: Subscriber<T>, invalidate?: Invalidator<T>) => Unsubscriber;
+	setSandbox: (sandbox: boolean) => void;
 	setMaxTokens: (maxTokens: number) => void;
 	setTemperature: (temperature: number) => void;
+	setLanguage: (language: string) => void;
 	reset: () => void;
 }
 

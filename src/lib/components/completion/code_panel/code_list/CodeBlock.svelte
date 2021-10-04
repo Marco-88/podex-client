@@ -1,11 +1,14 @@
 <script lang="ts">
-	import type { StoreItem } from '$lib/types';
-	import CodeHighlight from './CodeHighlight.svelte';
-	import { sendResetMessage } from './resetMessage';
-	import { codeStore } from './codeStore';
-	import Hoverable from '../../basic/Hoverable.svelte';
-	import Icon from '../../icon/Icon.svelte';
+	import {Highlight} from "svelte-highlight";
+	import "svelte-highlight/src/styles/atom-one-dark.css";
+	import type { StoreItem } from '../../../../types';
+	import { sendResetMessage } from '../../resetMessage';
+	import { codeStore } from '../codeStore';
+	import Hoverable from '../../../basic/Hoverable.svelte';
+	import Icon from '../../../icon/Icon.svelte';
 	import CodeEdit from './CodeEdit.svelte';
+	import { settingsStore } from '../../settings/settingsStore';
+	import { languages } from '../languages';
 
 	export let item: StoreItem = undefined;
 	let editMode = false;
@@ -27,6 +30,7 @@
 
 	$: code = item && buildCode();
 	$: editing = item && editMode;
+	$: language = $settingsStore.sandbox ? languages['typescript'] : languages[$settingsStore.language];
 </script>
 
 <div class='code-item'>
@@ -37,7 +41,7 @@
 			<Icon key="edit" action={() => toggleEditMode()} size={16} tooltip='Edit'/>
 			<Icon key="trash" action={() => sendResetAndRemoveItem()} size={16} tooltip='Delete'/>
 		</Hoverable>
-		<CodeHighlight {code} />
+		<Highlight {language} {code} />
 	{/if}
 </div>
 

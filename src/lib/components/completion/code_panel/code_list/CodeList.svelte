@@ -1,6 +1,6 @@
 <script lang="ts">
-	import CodeItem from './CodeItem.svelte';
-	import { codeStore } from './codeStore';
+	import CodeItem from './CodeBlock.svelte';
+	import { codeStore } from '../codeStore';
 </script>
 
 <div class="code-list">

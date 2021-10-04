@@ -1,6 +1,7 @@
 import type { ItemStore, StoreItem, Completion } from '$lib//types';
 import * as uuid from 'uuid';
 import { isCompletionFinished } from '$lib/core/openai/api';
+import { byteToString } from '$lib/core/stream/convert';
 
 export class CodeStreamer {
     private store: ItemStore<StoreItem>;
@@ -44,7 +45,7 @@ export class CodeStreamer {
     }
 
     private processCompletionToken(chunk: Uint8Array): string {
-        const token = CodeStreamer.byteToString(chunk);
+        const token = byteToString(chunk);
 
         if (token.startsWith('data: ')) {
             const item = this.parseCompletion(token);
@@ -86,13 +87,5 @@ export class CodeStreamer {
         } finally {
             reader.releaseLock();
         }
-    }
-
-    private static byteToString(bytes: Uint8Array): string {
-        let str = '';
-        for (let i = 0; i < bytes.length; i++) {
-            str += String.fromCharCode(bytes[i]);
-        }
-        return str;
     }
 }
