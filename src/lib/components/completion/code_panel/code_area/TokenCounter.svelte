@@ -3,7 +3,7 @@
 	export let tokenCount: number | boolean = false;
 </script>
 
-<div class="token-counter">
+<div class="token-counter" title='Amount of tokens that would be send'>
 	{#if typeof tokenCount === 'number'}
 		{tokenCount}
 	{:else if tokenCount}
@@ -15,6 +15,7 @@
 	@import "../../../../../../static/css/variables";
 
 	.token-counter {
-		padding: 1rem;
+		padding: .5rem;
+		background-color: $primary-light;
 	}
 </style>

@@ -25,6 +25,8 @@
 
 		&.off {
 			flex-direction: column;
+			justify-content: start;
+			padding: 0 1rem;
 		}
 	}
 </style>

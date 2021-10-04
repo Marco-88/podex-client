@@ -25,7 +25,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 1rem;
+		padding: .5rem 0;
 		width: 100%;
 
 		.controls {
