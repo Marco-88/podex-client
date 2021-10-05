@@ -29,23 +29,11 @@ export interface ItemStore<T extends StoreItem> {
 	clear: () => void;
 }
 
-export interface HistoryStore<T extends History> {
-	subscribe: (this: void, run: Subscriber<T>, invalidate?: Invalidator<T>) => Unsubscriber;
-	add: (item: StoreItem[]) => void;
-	undo: () => void;
-	redo: () => void;
-	clear: () => void;
-}
-
-export interface History {
-	index: number;
-	current: StoreItem[];
-	states: HistoryItem[]
-}
-
-export interface HistoryItem {
-	index: number;
-	state: StoreItem[]
+export interface IndexStore {
+	subscribe: (this: void, run: Subscriber<number>, invalidate?: Invalidator<number>) => Unsubscriber;
+	increment: () => void;
+	decrement: () => void;
+	reset: () => void;
 }
 
 export interface Settings {
