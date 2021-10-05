@@ -1,5 +1,6 @@
 import { settingsStore } from '$lib/components/completion/settings/settingsStore';
 import { languages } from '$lib/components/completion/code_panel/languages';
+import { indexPaddingStore } from '$lib/components/completion/code_panel/code_area/indexStore';
 
 
 export const maxTokens = {
@@ -19,7 +20,10 @@ export const temperature = {
 
 export const sandbox = {
     text: 'Sandbox',
-    saveValue: settingsStore.setSandbox
+    saveValue: (value: boolean): void => {
+        indexPaddingStore.reset();
+        settingsStore.setSandbox(value);
+    }
 };
 
 export const language = {
