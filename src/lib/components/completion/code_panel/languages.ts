@@ -1,12 +1,13 @@
-import { plaintext, typescript, python, java, bash, csharp, php, cpp } from "svelte-highlight/src/languages"
+import { plaintext, typescript, javascript, python, java, bash, csharp, php, cpp } from "svelte-highlight/src/languages"
 
 export const languages = {
 	plaintext,
-	typescript,
-	python,
-	java,
+	bash,
 	csharp,
 	cpp,
+	java,
+	javascript,
 	php,
-	bash
+	python,
+	typescript
 }
