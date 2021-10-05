@@ -24,7 +24,7 @@
 	const buildCode = (): void => {
 		if ($codeStore.length > 0) {
 			const item = $codeStore[$codeStore.length - $indexPaddingStore];
-			prompt = `${item.request} ${item.response}`;
+			code = prompt = `${item.request} ${item.response}`;
 		}
 		encodePrompt();
 	};
