@@ -3,6 +3,7 @@
 	import Icon from '$lib/components/icon/Icon.svelte';
 
 	export let size = 24;
+	export let round = true;
 	export let right = false;
 	export let prompt = '';
 	let isPending = false;
@@ -27,9 +28,9 @@
 
 <div class='send-request' class:right>
 	{#if !isPending}
-		<Icon key="submit" action={() => sendPrompt()} round={true} fill={true} {size} tooltip='Send'/>
+		<Icon key="submit" action={() => sendPrompt()} {round} fill={true} {size} tooltip='Send'/>
 	{:else}
-		<Icon key="spinner" action={() => stopStream()} round={true} fill={true} {size} tooltip='Cancel'/>
+		<Icon key="spinner" action={() => stopStream()} {round} fill={true} {size} tooltip='Cancel'/>
 	{/if}
 </div>
 

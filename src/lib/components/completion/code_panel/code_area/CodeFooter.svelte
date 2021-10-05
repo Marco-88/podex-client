@@ -13,7 +13,7 @@
 
 <div class='code-footer'>
 	<div class='controls'>
-		<CompletionIconButton {prompt} size={20}/>
+		<CompletionIconButton {prompt} round={false} size={20}/>
 		<Icon key="undo" action={() => undo()} fill={true} size={20} tooltip='Undo'/>
 		<Icon key="redo" action={() => redo()} fill={true} size={20} tooltip='Redo'/>
 	</div>
