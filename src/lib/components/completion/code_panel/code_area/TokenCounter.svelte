@@ -7,7 +7,7 @@
 	{#if typeof tokenCount === 'number'}
 		{tokenCount}
 	{:else if tokenCount}
-		<Icon key="spinner" fill={true} size={14} tooltip='Encoding Tokens'/>
+		<Icon key="spinner" fill={true} size={16} tooltip='Encoding Tokens'/>
 	{/if}
 </div>
 
@@ -15,7 +15,7 @@
 	@import "../../../../../../static/css/variables";
 
 	.token-counter {
-		padding: .35rem;
+		padding: .4rem;
 		background-color: $primary-light;
 	}
 </style>
