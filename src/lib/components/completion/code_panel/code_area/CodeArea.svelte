@@ -7,27 +7,34 @@
 	import { onMount } from 'svelte';
 	import CodeFooter from './CodeFooter.svelte';
 	import { requestTokenCount } from '../../../../core/openai/api';
+	import { indexPaddingStore } from './indexStore';
 
 	let prompt = '';
 	let promptArea: HTMLTextAreaElement;
 	let hljsCode: HTMLElement;
 	let tokenCount: number | boolean = false;
 
-	const buildCode = (): void => {
-		if($codeStore.length > 0) {
-			const item = $codeStore[$codeStore.length - 1];
-			prompt = `${item.request} ${item.response}`;
-		}
-	}
+	$: code = $indexPaddingStore && $codeStore && prompt;
 
-	const syncScroll = (): void => {hljsCode.scrollTop = promptArea.scrollTop};
-	const encodePrompt = async (): void => {
+	const encodePrompt = async (): Promise<void> => {
 		tokenCount = true;
 		tokenCount = await requestTokenCount(code);
-	}
+	};
 
-	$: code = $codeStore && prompt;
-	$: temp = $codeStore.length && buildCode();
+	const buildCode = (): void => {
+		if ($codeStore.length > 0) {
+			const item = $codeStore[$codeStore.length - $indexPaddingStore];
+			prompt = `${item.request} ${item.response}`;
+		}
+		encodePrompt();
+	};
+
+	const syncScroll = (): void => {
+		hljsCode.scrollTop = promptArea.scrollTop;
+		hljsCode.scrollLeft = promptArea.scrollLeft;
+	};
+
+	$: temp = $indexPaddingStore && $codeStore && buildCode();
 	$: language = $settingsStore.sandbox ? languages['typescript'] : languages[$settingsStore.language];
 
 	onMount(() => {

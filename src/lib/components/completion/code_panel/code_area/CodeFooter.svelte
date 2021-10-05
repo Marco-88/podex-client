@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Icon from '../../../icon/Icon.svelte';
-	import { historyStore } from '../historyStore';
 	import TokenCounter from './TokenCounter.svelte';
 	import CompletionIconButton from '../../CompletionIconButton.svelte';
+	import { indexPaddingStore } from './indexStore';
 
 	export let prompt = '';
 	export let tokenCount: number | boolean = false;
 
-	const undo = () => historyStore.undo();
-	const redo = () => historyStore.redo();
+	const undo = () => indexPaddingStore.increment();
+	const redo = () => indexPaddingStore.decrement();
 </script>
 
 <div class='code-footer'>
