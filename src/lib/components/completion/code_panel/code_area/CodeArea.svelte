@@ -47,7 +47,8 @@
 
 <pre class="code-area" spellcheck="false">
 	<Highlight {language} {code}/>
-	<textarea id="prompt-area" bind:value={prompt} bind:this={promptArea} spellcheck="false" on:scroll={() => syncScroll()} on:input={encodePrompt}></textarea>
+	<textarea id="prompt-area" bind:value={prompt} bind:this={promptArea} spellcheck="false"
+	          on:scroll={() => syncScroll()} on:input={encodePrompt}></textarea>
 </pre>
 <CodeFooter prompt={code} {tokenCount}/>
 
