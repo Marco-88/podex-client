@@ -4,7 +4,7 @@ Just got my beta key and now I wanna learn by cloning OpenAI's sandbox
 
 ## Prerequisites
 
-- node installed
+- `node` installed
 - openai api key
 
 ## Setup
@@ -28,9 +28,7 @@ npm run start
 
 # TODO
 
-- Implement the history for undo and redo
-- Sync caret of code area component from textarea to underlying highlight element
-- Show spinner while encoding token count
-- Improve settings layout of code area component
-- Adjust elements in footer of code area
-- Append response in code area
+- Format token counter tooltips
+- Rethink counters and refactor TokenCounter component
+- Separate code store for playground, but add last sandbox code block into code area
+- Debug removal of all code block - canvas stays in iframe
