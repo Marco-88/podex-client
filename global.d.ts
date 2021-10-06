@@ -1,6 +1,7 @@
 declare interface ImportMeta {
   env: {
-    VITE_OPENAI_API_KEY: string
+    VITE_OPENAI_API_KEY: string,
+    VITE_ENCODER_ADDRESS: string
   }
 }
 

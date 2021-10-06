@@ -6,51 +6,53 @@
 	import { codeStore } from '../codeStore';
 	import { onMount } from 'svelte';
 	import CodeFooter from './CodeFooter.svelte';
-	import { requestTokenCount } from '../../../../core/openai/api';
 	import { indexPaddingStore } from './indexStore';
+	import { tokenCountStore } from './tokenCountStore';
+	import type { Win } from '../../../../types';
 
 	let prompt = '';
 	let promptArea: HTMLTextAreaElement;
 	let hljsCode: HTMLElement;
 	let tokenCount: number | boolean = false;
-
+	const win = window as Win;
 	$: code = $indexPaddingStore && $codeStore && prompt;
 
-	const encodePrompt = async (): Promise<void> => {
+	const updateTokenCount = async (): Promise<void> => {
 		tokenCount = true;
-		tokenCount = await requestTokenCount(code);
-	};
+		tokenCount = win.tokenizer.encode(prompt).length
+		tokenCountStore.setTokenCount(tokenCount);
+		tokenCountStore.setPrompt(prompt);
+	}
 
 	const buildCode = (): void => {
 		if ($codeStore.length > 0) {
 			const item = $codeStore[$codeStore.length - $indexPaddingStore];
-			code = prompt = `${item.request} ${item.response}`;
+			prompt = `${item.request} ${item.response}`;
 		}
-		encodePrompt();
+
+		code = prompt
+		updateTokenCount();
 	};
 
 	const syncScroll = (): void => {
 		hljsCode.scrollTop = promptArea.scrollTop;
-		hljsCode.scrollLeft = promptArea.scrollLeft;
 	};
 
 	$: temp = $indexPaddingStore && $codeStore && buildCode();
 	$: language = $settingsStore.sandbox ? languages['typescript'] : languages[$settingsStore.language];
 
 	onMount(() => {
-		buildCode();
 		hljsCode = document.querySelector('.code-area code');
-		code = prompt;
-		encodePrompt();
+		buildCode();
 	});
 </script>
 
 <pre class="code-area" spellcheck="false">
 	<Highlight {language} {code}/>
 	<textarea id="prompt-area" bind:value={prompt} bind:this={promptArea} spellcheck="false"
-	          on:scroll={() => syncScroll()} on:input={encodePrompt}></textarea>
+	          on:scroll={() => syncScroll()} on:input={() => updateTokenCount()}></textarea>
 </pre>
-<CodeFooter prompt={code} {tokenCount}/>
+<CodeFooter prompt={code} />
 
 <style lang='scss'>
 	@import "static/css/variables";
@@ -69,7 +71,7 @@
 			left: 0;
 			background: transparent;
 			color: transparent;
-			padding: 1rem;
+			padding: 1rem 1.1rem 1rem 1rem;
 			font-size: 1.1rem;
 			border-radius: $radius;
 			width: 100%;

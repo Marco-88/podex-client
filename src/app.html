@@ -9,5 +9,9 @@
 	</head>
 	<body>
 		<div id="svelte">%svelte.body%</div>
+		<script type=module>
+			import * as tokenizer from "https://deno.land/x/gpt_2_3_tokenizer@v0.0.1/mod.js";
+			window.tokenizer = tokenizer;
+		</script>
 	</body>
 </html>

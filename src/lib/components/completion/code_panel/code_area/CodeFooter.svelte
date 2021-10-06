@@ -5,7 +5,6 @@
 	import { indexPaddingStore } from './indexStore';
 
 	export let prompt = '';
-	export let tokenCount: number | boolean = false;
 
 	const undo = () => indexPaddingStore.increment();
 	const redo = () => indexPaddingStore.decrement();
@@ -17,7 +16,7 @@
 		<Icon key="undo" action={() => undo()} fill={true} size={20} tooltip='Undo'/>
 		<Icon key="redo" action={() => redo()} fill={true} size={20} tooltip='Redo'/>
 	</div>
-	<TokenCounter {tokenCount}/>
+	<TokenCounter />
 </div>
 
 <style lang='scss'>

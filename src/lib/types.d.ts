@@ -36,6 +36,18 @@ export interface IndexStore {
 	reset: () => void;
 }
 
+export interface PromptTokenCount {
+	prompt: string;
+	tokenCount: number | boolean;
+}
+
+export interface TokenCountStore<T extends PromptTokenCount> {
+	subscribe: (this: void, run: Subscriber<T>, invalidate?: Invalidator<T>) => Unsubscriber;
+	setPrompt: (prompt: string) => void;
+	setTokenCount: (tokenCount: number | boolean) => void;
+	reset: () => void;
+}
+
 export interface Settings {
 	sandbox: boolean;
 	maxTokens: number;
@@ -75,4 +87,12 @@ export interface Choice {
 	index: number
 	logprobs: unknown
 	finish_reason: string
+}
+
+// *** Window Tokenizer *** \\
+
+export interface Win extends Window {
+	tokenizer: {
+		encode: (prompt: string) => Uint8Array
+	}
 }
