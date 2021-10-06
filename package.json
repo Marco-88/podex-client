@@ -2,7 +2,7 @@
   "name": "openai-svelte",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev --host --port 3000",
+    "dev": "svelte-kit dev --host --port 3017",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
