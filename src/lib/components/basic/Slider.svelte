@@ -19,7 +19,8 @@
 		<label for={getId() + '-text'} > {text}: </label>
 		<input id={getId() + '-text'} bind:value={value} on:focusout={() => validateValue()} {maxLength}/>
 	</div>
-	<input id={getId() + '-slider'} class="slider" type="range" {min} {max} {step} bind:value={value}>
+	<input id={getId() + '-slider'} class="slider" type="range" {min} {max} {step}
+	       bind:value={value} on:input={() => validateValue()}>
 </div>
 
 <style lang='scss'>
