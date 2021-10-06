@@ -5,7 +5,7 @@ const defaultValue = {
     sandbox: true,
     maxTokens: 1000,
     temperature: 0,
-    language: 'plaintext'
+    language: 'typescript'
 }
 
 function createSettingsStore(): SettingsStore<Settings> {
