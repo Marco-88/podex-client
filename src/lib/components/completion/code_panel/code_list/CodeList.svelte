@@ -1,15 +1,43 @@
 <script lang="ts">
 	import CodeItem from './CodeBlock.svelte';
 	import { codeStore } from '../codeStore';
+	import PanelHeader from '../../../basic/PanelHeader.svelte';
+	import Icon from '../../../icon/Icon.svelte';
+	import { sendResetMessage } from '../../sendMessage';
+
+	const clear = () => {
+		sendResetMessage();
+		codeStore.clear();
+	};
+
+	$: code = $codeStore.length > 0;
 </script>
 
+<div class='header' class:code>
+	<PanelHeader>
+		<Icon key="toilet" action={() => clear()} size={24} tooltip='Clear ALL'/>
+	</PanelHeader>
+</div>
 <div class="code-list">
 	{#each $codeStore as item}
 		<CodeItem {item} />
 	{/each}
 </div>
 
-<style>
+<style lang='scss'>
+	@import "static/css/variables";
+
+	.header {
+		width: 100%;
+		position: absolute;
+		top: 0;
+		z-index: 17;
+
+		&.code {
+			 background: $monokai-bg;
+		 }
+	}
+
 	.code-list {
 		display: flex;
 		flex-direction: column;
