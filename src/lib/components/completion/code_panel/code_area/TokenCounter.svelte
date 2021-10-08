@@ -19,7 +19,12 @@
 		{Math.round($tokenCountStore.prompt.length / charTokenRatio)}
 	</div>
 
-	<div class="token-counter" title={titleBase + (warn ? titleWarn : titleInfo)} class:warn>
+	<div class="token-counter" class:warn>
+		<div class='token-counter-title'>
+			<span class='title-base'>{titleBase}</span>
+			<span class='title-info'>{titleInfo}</span>
+			<span class='title-warn'>{titleWarn}</span>
+		</div>
 		{#if typeof $tokenCountStore.tokenCount === 'number'}
 			{$tokenCountStore.tokenCount}
 		{:else if $tokenCountStore.tokenCount}
@@ -44,6 +49,41 @@
 			&.warn {
 				background: $error-dark;
 				color: $secondary-light;
+			}
+
+			.token-counter-title {display: none;}
+			.title-info {color: $info-dark;}
+			.title-warn {color: $error;}
+		}
+
+		.token-counter:hover {
+			padding: .4rem;
+			background-color: $primary;
+			border-radius: $radius;
+			position: relative;
+
+			.token-counter-title {
+				display:flex;
+				flex-direction: column;
+				background-color: $primary-dark;
+				border: $border solid $secondary;
+				border-radius: $radius;
+				position: absolute;
+				top: -320%;
+				left: -36px;
+				width: 250px;
+				padding:.5rem;
+			}
+
+			&.warn {
+				background: $error-dark;
+				color: $secondary-light;
+				.token-counter-title {top: -440%;}
+				.title-info {display: none;}
+			}
+
+			&:not(.warn) {
+				.title-warn {display: none;}
 			}
 		}
 	}
