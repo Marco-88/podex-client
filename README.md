@@ -28,7 +28,4 @@ npm run start
 
 # TODO
 
-- Format token counter tooltips
-- Rethink counters and refactor TokenCounter component
 - Separate code store for playground, but add last sandbox code block into code area
-- Debug removal of all code block - canvas stays in iframe
