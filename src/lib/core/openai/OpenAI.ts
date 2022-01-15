@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
-import { codeStore } from '$lib/components/completion/code_panel/codeStore'
-import type { CompletionOpts, StoreItem } from '$lib/types';
+import { codeListStore } from '$lib/components/completion/code_panel/codeStore'
+import type { CompletionOpts, Engine } from '$lib/types';
 import { CodeStreamer } from '../stream/CodeStreamer';
 import { preparePrompt } from './examples';
 import { settingsStore } from '$lib/components/completion/settings/settingsStore';
@@ -21,7 +21,7 @@ export class OpenAI {
 		try {
 			const response = await this.sendRequest(prompt);
 			const reader = response.body.getReader();
-			this.streamer = new CodeStreamer(codeStore, reader);
+			this.streamer = new CodeStreamer(codeListStore, reader);
 			await this.streamer.processStream(prompt);
 		} catch (err) {
 			console.log(err);
@@ -30,14 +30,26 @@ export class OpenAI {
 
 	public stop = async (): Promise<void> => await this.streamer.stopStream();
 
+	public getEngines = async (): Promise<Engine[]> => {
+		const response = await fetch(`${OPEN_AI_URL}/engines`, this.createGetRequestInfo());
+		return JSON.parse(await response.text()).data;
+	};
+
+	private createGetRequestInfo (): RequestInit {
+		return {
+			method: 'GET',
+			headers: this.createRequestHeader()
+		};
+	}
+
 	private async sendRequest (prompt: string): Promise<Response> {
 		if(get(settingsStore).sandbox)
 			prompt = preparePrompt(prompt);
-		const url = `${OPEN_AI_URL}/engines/davinci-codex/completions`;
-		return await fetch(url, this.createRequestInfo(prompt));
+		const url = `${OPEN_AI_URL}/engines/${get(settingsStore).engine}/completions`;
+		return await fetch(url, this.createPostRequestInfo(prompt));
 	}
 
-	private createRequestInfo (prompt: string): RequestInit {
+	private createPostRequestInfo (prompt: string): RequestInit {
 		return {
 			method: 'POST',
 			headers: this.createRequestHeader(),
