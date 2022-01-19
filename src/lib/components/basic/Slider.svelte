@@ -1,21 +1,28 @@
 <script lang="ts">
 	export let text = '';
-	export let value = 17;
+	export let startValue = 17;
 	export let min = 0;
 	export let max = 100;
 	export let step = 1;
 	export let maxLength = 4;
+	export let column = true;
 	export let saveValue: (value: number) => void;
 
 	const getId = (): string => text.toLowerCase().replace(/ /g, '-')
+
+	const getValidValue = (uncheckedValue: number): number => {
+		return uncheckedValue < min ? min : uncheckedValue > max ? max : uncheckedValue;
+	};
+
+	$: value = startValue && max && getValidValue(startValue);
+
 	const validateValue = (): void => {
-		value = value < min ? min : value > max ? max : value;
-		saveValue(value);
+		saveValue(getValidValue(value));
 	};
 </script>
 
 <div class="slider-wrapper">
-	<div class='label-value'>
+	<div class='label-value' class:column>
 		<label for={getId() + '-text'} > {text}: </label>
 		<input id={getId() + '-text'} bind:value={value} on:focusout={() => validateValue()} {maxLength}/>
 	</div>
@@ -39,6 +46,10 @@
 			input {
 				width: 40px;
 				text-align: center;
+			}
+
+			&.column {
+				width: 100%;
 			}
 		}
 
