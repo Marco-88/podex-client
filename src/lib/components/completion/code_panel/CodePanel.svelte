@@ -1,9 +1,5 @@
 <script lang="ts">
 	import CodeList from './code_list/CodeList.svelte';
-	import PanelHeader from '../../basic/PanelHeader.svelte';
-	import Icon from '../../icon/Icon.svelte';
-	import { codeStore } from './codeStore';
-	import { sendResetMessage } from '../sendMessage';
 	import { settingsStore } from '../settings/settingsStore';
 	import CodeArea from './code_area/CodeArea.svelte';
 
