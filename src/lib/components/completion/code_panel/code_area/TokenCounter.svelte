@@ -4,10 +4,15 @@
 	import { settingsStore } from '../../settings/settingsStore';
 
 	const charTokenRatio = 2.870;
-	$: titleBase = `${$tokenCountStore.tokenCount} token in prompt Up to ${$settingsStore.maxTokens} tokens in response`;
-	$: titleInfo = `Submitting would use up to ${$tokenCountStore.tokenCount + $settingsStore.maxTokens} tokens`;
-	const titleWarn = 'This engine can only process a maximum of 4,096 tokens in a single request, please reduce your prompt or response length.';
 	$: warn = $tokenCountStore.tokenCount + $settingsStore.maxTokens > 4096;
+	$: tokenCount = $tokenCountStore.tokenCount;
+	$: maxTokens = $settingsStore.maxTokens;
+
+	$: titleBase = `${tokenCount} tokens in prompt Up to ${maxTokens} tokens in response`;
+	$: titleInfo = `Submitting would use up to ${tokenCount + maxTokens} tokens`;
+	const titleWarn =
+		'This engine can only process a maximum of 4,096 tokens in a single request, ' +
+		'please reduce your prompt or response length.';
 </script>
 
 <div class='token-info'>
@@ -25,9 +30,10 @@
 			<span class='title-info'>{titleInfo}</span>
 			<span class='title-warn'>{titleWarn}</span>
 		</div>
-		{#if typeof $tokenCountStore.tokenCount === 'number'}
-			{$tokenCountStore.tokenCount}
-		{:else if $tokenCountStore.tokenCount}
+
+		{#if typeof tokenCount === 'number'}
+			{tokenCount}
+		{:else if tokenCount}
 			<Icon key="spinner" fill={true} size={16} tooltip='Encoding Tokens'/>
 		{/if}
 	</div>
