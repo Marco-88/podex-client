@@ -2,6 +2,7 @@
 	import { codeListStore } from './code_panel/codeStore';
 	import { isCompletionFinished } from '../../core/openai/api';
 	import { sendMessage, sendResetMessage } from './sendMessage';
+	import FullScreenButton from './FullScreenButton.svelte';
 
 	const triggerPostMessage = (): void => {
 		if ($codeListStore.length > 0) {
@@ -20,6 +21,7 @@
 </script>
 
 <div class='sandbox-container' >
+	<FullScreenButton/>
 	<iframe id="sandbox-frame" title="Sandbox" src='/sandbox/sandbox.html' on:load={load}></iframe>
 	{#if $codeListStore.length === 0}
 		<div>Tell Podex what to do below, and it will generate JavaScript that runs here.</div>
