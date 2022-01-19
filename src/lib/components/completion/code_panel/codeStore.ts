@@ -22,4 +22,5 @@ function createCodeStore(): ItemStore<StoreItem> {
     };
 }
 
-export const codeStore = createCodeStore();
+export const codeListStore = createCodeStore();
+export const codeAreaStore = createCodeStore();
