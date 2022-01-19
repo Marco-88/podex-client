@@ -4,12 +4,13 @@
 	export let text = '';
 	export let checked = true;
 	export let saveValue: (checked: boolean) => void;
+	export let column = false;
 
 	const getId = (): string => text.toLowerCase().replace(/ /g, '-')
 	const setChecked = (event: ChangeEvent): void => saveValue(event.target.checked);
 </script>
 
-<div class='checkbox-wrapper'>
+<div class='checkbox-wrapper' class:column>
 	<label for={getId()}> {text}: </label>
 	<input id={getId()} type='checkbox' bind:checked on:change={(event) => setChecked(event)}/>
 </div>
@@ -23,6 +24,11 @@
 		align-items: center;
 		padding: .75rem;
 
+		&.column {
+			width: 100%;
+			align-items: center;
+			justify-content: start;
+		}
 		label {
 			cursor: pointer;
 		}
