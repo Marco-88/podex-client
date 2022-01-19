@@ -1,27 +1,27 @@
 <script lang="ts">
-	import { codeStore } from './code_panel/codeStore';
+	import { codeListStore } from './code_panel/codeStore';
 	import { isCompletionFinished } from '../../core/openai/api';
 	import { sendMessage, sendResetMessage } from './sendMessage';
 
 	const triggerPostMessage = (): void => {
-		if($codeStore.length > 0) {
-			const data = $codeStore[$codeStore.length - 1].response;
+		if ($codeListStore.length > 0) {
+			const data = $codeListStore[$codeListStore.length - 1].response;
 			sendMessage(data);
 		}
-	}
+	};
 
-	$: temp = $codeStore && $isCompletionFinished && triggerPostMessage();
+	$: temp = $codeListStore && $isCompletionFinished && triggerPostMessage();
 
 	const load = (): void => {
 		sendResetMessage();
-		const data = $codeStore.map(item => item.response).join();
+		const data = $codeListStore.map(item => item.response).join();
 		sendMessage(data);
-	}
+	};
 </script>
 
 <div class='sandbox-container' >
 	<iframe id="sandbox-frame" title="Sandbox" src='/sandbox/sandbox.html' on:load={load}></iframe>
-	{#if $codeStore.length === 0}
+	{#if $codeListStore.length === 0}
 		<div>Tell Podex what to do below, and it will generate JavaScript that runs here.</div>
 	{/if}
 </div>
