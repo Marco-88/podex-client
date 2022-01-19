@@ -1,6 +1,6 @@
 import type { IndexStore, Writable } from '$lib/types';
 import { writable, get } from 'svelte/store';
-import { codeStore } from '../codeStore';
+import { codeListStore } from '../codeStore';
 
 
 function createIndexStore(): IndexStore {
@@ -8,7 +8,7 @@ function createIndexStore(): IndexStore {
 
     return {
         subscribe,
-        increment: () => update(prev => get(codeStore).length > prev ? ++prev : prev),
+        increment: () => update(prev => get(codeListStore).length > prev ? ++prev : prev),
         decrement: () => update(prev => prev > 1 ? --prev : prev),
         reset: () => set(1)
     };
