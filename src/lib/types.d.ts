@@ -82,6 +82,13 @@ export interface Completion {
 	choices: Choice[]
 }
 
+export interface Engine {
+	id: string
+	object: string
+	owner: string
+	ready: boolean
+}
+
 export interface Choice {
 	text: string
 	index: number
