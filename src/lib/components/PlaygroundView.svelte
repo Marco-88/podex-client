@@ -2,10 +2,16 @@
 	import PanelHeader from './basic/PanelHeader.svelte';
 	import Settings from './completion/settings/Settings.svelte';
 	import CodePanel from './completion/code_panel/CodePanel.svelte';
+	import InfoPanel from './basic/InfoPanel.svelte';
+	import InfoPlayground from './completion/InfoPlayground.svelte';
 </script>
 
 <section class='playground'>
-	<PanelHeader text="Poku17s Playground"/>
+	<PanelHeader text="Poku17s Playground">
+		<InfoPanel iconKey='info' tooltip='Info'>
+			<InfoPlayground/>
+		</InfoPanel>
+	</PanelHeader>
 	<div class='main'>
 		<CodePanel />
 		<Settings />

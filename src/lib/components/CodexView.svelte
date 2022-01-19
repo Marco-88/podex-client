@@ -4,12 +4,16 @@
 	import PanelHeader from './basic/PanelHeader.svelte';
 	import Settings from './completion/settings/Settings.svelte';
 	import CodePanel from './completion/code_panel/CodePanel.svelte';
-	import { settingsStore } from './completion/settings/settingsStore';
+	import InfoPanel from './basic/InfoPanel.svelte';
+	import InfoSandbox from './completion/InfoSandbox.svelte';
 </script>
 
 <section class='playground'>
 	<div class='main'>
-		<PanelHeader text="Poku17s Codex"/>
+		<PanelHeader text="Poku17s JavaScript Sandbox"/>
+		<InfoPanel iconKey='info' tooltip='Info'>
+			<InfoSandbox/>
+		</InfoPanel>
 		<SandBox />
 		<Settings />
 		<PromptArea />
