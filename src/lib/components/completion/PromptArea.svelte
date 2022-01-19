@@ -4,7 +4,7 @@
 </script>
 
 <div class="prompt-container">
-	<textarea id="prompt-area" bind:value={prompt} placeholder="Provide instructions..."></textarea>
+	<textarea id="prompt-area" bind:value={prompt} placeholder="Provide instructions..." spellcheck='false'></textarea>
 	<CompletionIconButton {prompt} right={true} />
 </div>
 
