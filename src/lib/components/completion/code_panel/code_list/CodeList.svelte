@@ -1,25 +1,25 @@
 <script lang="ts">
 	import CodeItem from './CodeBlock.svelte';
-	import { codeStore } from '../codeStore';
+	import { codeListStore } from '../codeStore';
 	import PanelHeader from '../../../basic/PanelHeader.svelte';
 	import Icon from '../../../icon/Icon.svelte';
 	import { sendResetMessage } from '../../sendMessage';
 
 	const clear = () => {
 		sendResetMessage();
-		codeStore.clear();
+		codeListStore.clear();
 	};
 
-	$: code = $codeStore.length > 0;
+	$: code = $codeListStore.length > 0;
 </script>
 
 <div class='header' class:code>
 	<PanelHeader>
-		<Icon key="toilet" action={() => clear()} size={24} tooltip='Clear ALL'/>
+		<Icon key="toilet" action={() => clear()} size={32} tooltip='Clear ALL'/>
 	</PanelHeader>
 </div>
 <div class="code-list">
-	{#each $codeStore as item}
+	{#each $codeListStore as item}
 		<CodeItem {item} />
 	{/each}
 </div>

@@ -3,7 +3,7 @@
 	import "svelte-highlight/src/styles/atom-one-dark.css";
 	import type { StoreItem } from '../../../../types';
 	import { sendResetMessage } from '../../sendMessage';
-	import { codeStore } from '../codeStore';
+	import { codeListStore } from '../codeStore';
 	import Hoverable from '../../../basic/Hoverable.svelte';
 	import Icon from '../../../icon/Icon.svelte';
 	import CodeEdit from './CodeEdit.svelte';
@@ -19,13 +19,13 @@
 
 	const sendResetAndRemoveItem = (): void => {
 		sendResetMessage();
-		codeStore.removeById(item.id);
+		codeListStore.removeById(item.id);
 	};
 
 	const updateItem = (event): void => {
 		toggleEditMode();
 		sendResetMessage();
-		codeStore.setResponse(item.id, cutRequestOut(event.detail.code));
+		codeListStore.setResponse(item.id, cutRequestOut(event.detail.code));
 	}
 
 	$: code = item && buildCode();

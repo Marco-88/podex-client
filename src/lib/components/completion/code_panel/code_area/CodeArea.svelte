@@ -3,7 +3,7 @@
 	import 'svelte-highlight/src/styles/atom-one-dark.css';
 	import { settingsStore } from '../../settings/settingsStore';
 	import { languages } from '../languages';
-	import { codeStore } from '../codeStore';
+	import { codeAreaStore, codeListStore } from '../codeStore';
 	import { onMount } from 'svelte';
 	import CodeFooter from './CodeFooter.svelte';
 	import { indexPaddingStore } from './indexStore';
@@ -15,7 +15,7 @@
 	let hljsCode: HTMLElement;
 	let tokenCount: number | boolean = false;
 	const win = window as Win;
-	$: code = $indexPaddingStore && $codeStore && prompt;
+	$: code = $indexPaddingStore && $codeAreaStore && prompt;
 
 	const updateTokenCount = async (): Promise<void> => {
 		tokenCount = true;
@@ -25,8 +25,8 @@
 	}
 
 	const buildCode = (): void => {
-		if ($codeStore.length > 0) {
-			const item = $codeStore[$codeStore.length - $indexPaddingStore];
+		if ($codeAreaStore.length > 0) {
+			const item = $codeAreaStore[$codeAreaStore.length - $indexPaddingStore];
 			prompt = `${item.request} ${item.response}`;
 		}
 
@@ -38,11 +38,19 @@
 		hljsCode.scrollTop = promptArea.scrollTop;
 	};
 
-	$: temp = $indexPaddingStore && $codeStore && buildCode();
+	$: temp = $indexPaddingStore && $codeAreaStore && buildCode();
 	$: language = $settingsStore.sandbox ? languages['typescript'] : languages[$settingsStore.language];
 
 	onMount(() => {
 		hljsCode = document.querySelector('.code-area code');
+
+		if ($codeListStore.length > 0) {
+			const codeItem = $codeListStore[$codeListStore.length - 1];
+			const item = $codeAreaStore.find(item => item.id === codeItem.id);
+
+			!item ? codeAreaStore.add(codeItem) : codeAreaStore.setItem(item.id, codeItem);
+		}
+
 		buildCode();
 	});
 </script>
