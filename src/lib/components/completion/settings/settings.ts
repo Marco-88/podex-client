@@ -1,4 +1,4 @@
-import { settingsStore } from '$lib/components/completion/settings/settingsStore';
+import { defaultValue, settingsStore } from '$lib/components/completion/settings/settingsStore';
 import { languages } from '$lib/components/completion/code_panel/languages';
 import { indexPaddingStore } from '$lib/components/completion/code_panel/code_area/indexStore';
 
@@ -22,12 +22,20 @@ export const sandbox = {
     text: 'Sandbox',
     saveValue: (value: boolean): void => {
         indexPaddingStore.reset();
+        if(value) {
+            settingsStore.setEngine(defaultValue.engine);
+        }
         settingsStore.setSandbox(value);
     }
 };
 
 export const language = {
-    text: 'Language',
+    text: 'Highlight Language',
     items: Object.keys(languages),
     saveValue: settingsStore.setLanguage
+}
+
+export const engine = {
+    text: 'Engine',
+    saveValue: settingsStore.setEngine
 }
