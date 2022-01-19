@@ -7,10 +7,15 @@ function createCodeStore(): ItemStore<StoreItem> {
     return {
         subscribe,
         add: (item: StoreItem) => update(prev => [...prev, item]),
-        removeById: (id: string) => update(prev => prev.filter(item => item.id !== id)),
-        removeByValue: (item: StoreItem) => update(prev => prev.filter(storeItem => storeItem !== item)),
         appendToken: (id: string, token: string) => update(prev => {
             prev.find(item => item.id === id).response += token;
+            return prev;
+        }),
+        removeById: (id: string) => update(prev => prev.filter(item => item.id !== id)),
+        removeByValue: (item: StoreItem) => update(prev => prev.filter(storeItem => storeItem !== item)),
+        setItem: (id: string, newItem: StoreItem) => update(prev => {
+            const index = prev.findIndex(item => item.id === id);
+            if(index) prev[index] = newItem;
             return prev;
         }),
         setResponse: (id: string, response: string) => update(prev => {
