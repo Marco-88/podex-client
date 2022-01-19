@@ -1,9 +1,9 @@
 import { get } from 'svelte/store';
-import { codeStore } from '$lib/components/completion/code_panel/codeStore';
+import { codeListStore } from '$lib/components/completion/code_panel/codeStore';
 import type { StoreItem } from '$lib/types';
 
 export const preparePrompt = (prompt: string): string => {
-	const items = get(codeStore);
+	const items = get(codeListStore);
 
 	if(items.length === 0)
 		return addExamplePattern(prompt);
