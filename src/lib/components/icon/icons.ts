@@ -11,15 +11,15 @@ import Trash from './svg/trash-alt.svg';
 import Undo from './svg/undo-alt.svg';
 
 export const icons = {
-	check: { top: '.55rem', icon: Check },
-	close: { top: '.4rem', icon: Close },
-	edit: { top: '.45rem', icon: Edit },
-	fullScreen: { icon: FullScreen },
-	info: { icon: Info },
-	redo: { icon: Redo },
-	spinner: { icon: Spinner },
-	submit: { top: '.45rem', icon: ArrowRight },
-	toilet: { icon: Toilet },
-	trash: { top: '.4rem', icon: Trash },
-	undo: { icon: Undo }
+	check: Check,
+	close: Close,
+	edit: Edit,
+	fullScreen: FullScreen,
+	info: Info,
+	redo: Redo,
+	spinner: Spinner,
+	submit: ArrowRight,
+	toilet: Toilet,
+	trash: Trash,
+	undo: Undo
 }

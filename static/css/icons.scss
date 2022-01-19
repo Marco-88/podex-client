@@ -12,6 +12,18 @@
         }
     }
 
+    &.dark {
+        svg path {
+            fill: $primary-dark;
+            stroke: $primary-light;
+        }
+
+        svg:hover path {
+            fill: $primary-light;
+            stroke: $primary-dark;
+        }
+    }
+
     &.fill:hover {
         background: $secondary;
         border: $border solid $primary;
