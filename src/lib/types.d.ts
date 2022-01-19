@@ -22,9 +22,10 @@ export interface StoreItem {
 export interface ItemStore<T extends StoreItem> {
 	subscribe: (this: void, run: Subscriber<T[]>, invalidate?: Invalidator<T[]>) => Unsubscriber;
 	add: (item: T) => void;
+	appendToken: (id: string, token: string) => void;
 	removeById: (index: string) => void;
 	removeByValue: (item: T) => void;
-	appendToken: (id: string, token: string) => void;
+	setItem: (id: string, newItem: StoreItem) => void;
 	setResponse: (id: string, response: string) => void;
 	clear: () => void;
 }
@@ -50,6 +51,8 @@ export interface TokenCountStore<T extends PromptTokenCount> {
 
 export interface Settings {
 	sandbox: boolean;
+	engine: string;
+	fullScreen: boolean;
 	maxTokens: number;
 	temperature: number;
 	language: string;
@@ -57,6 +60,8 @@ export interface Settings {
 
 export interface SettingsStore<T extends Settings> {
 	subscribe: (this: void, run: Subscriber<T>, invalidate?: Invalidator<T>) => Unsubscriber;
+	setEngine: (engine: string) => void;
+	setFullScreen: (fullScreen: boolean) => void;
 	setSandbox: (sandbox: boolean) => void;
 	setMaxTokens: (maxTokens: number) => void;
 	setTemperature: (temperature: number) => void;
