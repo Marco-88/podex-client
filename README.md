@@ -25,7 +25,3 @@ npm run start
 ## Usage
 
 [OpenAI Completion Docs](https://beta.openai.com/docs/guides/completion)
-
-# TODO
-
-- Separate code store for playground, but add last sandbox code block into code area
